@@ -1,0 +1,16 @@
+{
+  "name": "movie_api",
+  "version": "1.0.0",
+  "description": "An API providing a database of films selected by Sophia B.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
