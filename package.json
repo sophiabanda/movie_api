@@ -2,7 +2,7 @@
   "name": "movie_api",
   "version": "1.0.0",
   "description": "An API providing a database of films selected by Sophia B.",
-  "main": "server.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
