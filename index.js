@@ -108,15 +108,15 @@ app.get('/secreturl', (req, res) => {
 
 //sets directory from which to grab static files:
 app.use(express.static('public'));
-
+//get retrieves all that is requested below:
 app.get('/documentation', (req, res) => {
-  res.sendFile('../documentation.html', {root: __dirname});
+  res.sendFile('public/documentation.html', {root: __dirname});
 });
 
 app.get('/sophs_films', (req, res) => {
   res.json(topFilms);
 });
-
+//returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
