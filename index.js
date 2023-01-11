@@ -106,10 +106,11 @@ app.get('/secreturl', (req, res) => {
   res.send('This is a secret url with super top-secret content.');
 });
 
+//sets directory from which to grab static files:
 app.use(express.static('public'));
 
 app.get('/documentation', (req, res) => {
-  res.sendFile('/documentation.html', {root: __dirname});
+  res.sendFile('../documentation.html', {root: __dirname});
 });
 
 app.get('/sophs_films', (req, res) => {
