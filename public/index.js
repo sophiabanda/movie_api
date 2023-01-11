@@ -100,6 +100,7 @@ app.use(requestTimeStamp);
 app.use(morgan('common'));
 app.use(morgan('combined', {stream: accessLogStream}));
 
+
 app.get('/', (req, res) => {
   let responseMessage = "Welcome to a list of my favorite films." + " ";
   responseMessage += '<small>Requested at:' + req.requestTimeStamp + '</small>';
@@ -119,6 +120,12 @@ app.get('/docs', (req, res) => {
 app.get('/sophs_films', (req, res) => {
   res.json(topFilms);
 });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 
 app.listen(8080, () => {
   console.log('Your app is running on port 8080.');
