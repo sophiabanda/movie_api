@@ -1,6 +1,10 @@
-const express = require('express');
+const express = require('express'),
+      morgan = require('morgan'),
+      fs = require('fs'),
+      path = require('path');
+
 const app = express();
-const morgan = require('morgan');
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
 let topFilms = [
 
@@ -54,6 +58,7 @@ const requestTimeStamp = (req, res, next) => {
 app.use(myLogger);
 app.use(requestTimeStamp);
 app.use(morgan('common'));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 app.get('/', (req, res) => {
   let responseMessage = "Welcome to a list of my favorite films." + " ";

@@ -1,0 +1,4 @@
+::ffff:127.0.0.1 - - [11/Jan/2023:18:25:43 +0000] "GET / HTTP/1.1" 200 81 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [11/Jan/2023:18:25:54 +0000] "GET /documentation HTTP/1.1" 404 272 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [11/Jan/2023:18:25:54 +0000] "GET /documentation HTTP/1.1" 404 272 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [11/Jan/2023:18:25:59 +0000] "GET / HTTP/1.1" 200 81 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
