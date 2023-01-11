@@ -40,19 +40,34 @@ let topFilms = [
 
 ];
 
+const myLogger = (req, res, next) => {
+  console.log(req.url);
+  next();
+};
+
+const requestTimeStamp = (req, res, next) => {
+  req.requestTimeStamp = Date.now();
+  next();
+}
+
+app.use(myLogger);
+app.use(requestTimeStamp);
+
 app.get('/', (req, res) => {
-  res.send('Welcome to a list of my favorite films.');
+  let responseMessage = "Welcome to a list of my favorite films."
+  responseMessage += '<small>Requested at:' + req.requestTimeStamp + '</small>';
+  res.send(responseMessage);
 });
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', {root: __dirname});
 });
 
-app.get('/sophs_films', (req, res) => {
-  res.json(sophsFilms);
-});
+// app.get('/sophs_films', (req, res) => {
+//   res.json(sophsFilms);
+// });
 
 app.listen(8080, () => {
   console.log('Your app is running on port 8080.');
