@@ -64,18 +64,13 @@ let topFilms = [
   },
 
   {
-    title: 'Full Metal Jacket',
-    director: ''
+    title: 'Coco',
+    director: 'Lee Unkrich'
   },
 
   {
     title: 'Full Metal Jacket',
     director: 'Stanley Kubrick'
-  },
-
-  {
-    title: 'Coco',
-    director: 'Lee Unkrich'
   },
 
   {
