@@ -17,3 +17,5 @@
 ::ffff:127.0.0.1 - - [11/Jan/2023:18:38:33 +0000] "GET /docs HTTP/1.1" 200 444 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
 ::ffff:127.0.0.1 - - [11/Jan/2023:18:39:08 +0000] "GET /docs HTTP/1.1" 200 458 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
 ::ffff:127.0.0.1 - - [11/Jan/2023:18:39:38 +0000] "GET /docs HTTP/1.1" 200 471 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [11/Jan/2023:18:41:10 +0000] "GET / HTTP/1.1" 200 81 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [11/Jan/2023:18:41:39 +0000] "GET /sophs_films HTTP/1.1" 200 387 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"

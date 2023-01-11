@@ -43,6 +43,46 @@ let topFilms = [
     director: 'Tony Scott'
   },
 
+  {
+    title: 'Mulholland Drived',
+    director: 'Paul Thomas Anderson'
+  },
+
+  {
+    title: 'Pet Semetary',
+    director: 'Mary Lambert'
+  },
+
+  {
+    title: 'The Shawshank Redemption',
+    director: 'Frank Darabont'
+  },
+
+  {
+    title: 'Amélie',
+    director: 'Jean-Pierre Jeunet'
+  },
+
+  {
+    title: 'Full Metal Jacket',
+    director: ''
+  },
+
+  {
+    title: 'Full Metal Jacket',
+    director: 'Stanley Kubrick'
+  },
+
+  {
+    title: 'Coco',
+    director: 'Lee Unkrich'
+  },
+
+  {
+    title: 'The Lost Boys',
+    director: 'Joel Schumacher'
+  }
+
 ];
 
 const myLogger = (req, res, next) => {
