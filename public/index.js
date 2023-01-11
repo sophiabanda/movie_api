@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 let topFilms = [
 
@@ -52,22 +53,27 @@ const requestTimeStamp = (req, res, next) => {
 
 app.use(myLogger);
 app.use(requestTimeStamp);
+app.use(morgan('common'));
 
 app.get('/', (req, res) => {
-  let responseMessage = "Welcome to a list of my favorite films."
+  let responseMessage = "Welcome to a list of my favorite films." + " ";
   responseMessage += '<small>Requested at:' + req.requestTimeStamp + '</small>';
   res.send(responseMessage);
 });
 
-// app.use(express.static('public'));
+app.get('/secreturl', (req, res) => {
+  res.send('This is a secret url with super top-secret content.');
+});
+
+app.use(express.static('public'));
 
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', {root: __dirname});
 });
 
-// app.get('/sophs_films', (req, res) => {
-//   res.json(sophsFilms);
-// });
+app.get('/sophs_films', (req, res) => {
+  res.json(topFilms);
+});
 
 app.listen(8080, () => {
   console.log('Your app is running on port 8080.');
