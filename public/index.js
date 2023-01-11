@@ -72,8 +72,8 @@ app.get('/secreturl', (req, res) => {
 
 app.use(express.static('public'));
 
-app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', {root: __dirname});
+app.get('/docs', (req, res) => {
+  res.sendFile('/docs.html', {root: __dirname});
 });
 
 app.get('/sophs_films', (req, res) => {
