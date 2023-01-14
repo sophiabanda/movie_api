@@ -10,72 +10,89 @@ let topFilms = [
 
   {
     title: 'Goodfellas',
-    director: 'Martin Scorcese'
+    genre: '',
+    director: {
+      name: 'Martin Scorcese',
+      dob: ''
+    }
   },
 
   {
     title: 'Jackie Brown',
-    director: 'Quentin Tarantino'
+    director: 'Quentin Tarantino',
+    genre: ''
   },
 
   {
     title: 'Casino',
-    director: 'Martin Scorcese'
+    director: 'Martin Scorcese',
+    genre: ''
   },
 
   {
     title: 'Punch Drunk Love',
-    director: 'Paul Thomas Anderson'
+    director: 'Paul Thomas Anderson',
+    genre: ''
   },
 
   {
     title: 'Magnolia',
-    director: 'Paul Thomas Anderson'
+    director: 'Paul Thomas Anderson',
+    genre: ''
   },
 
   {
     title: '2001: A Space Odyssey',
-    director: 'Stanley Kubrick'
+    director: 'Stanley Kubrick',
+    genre: ''
   },
 
   {
     title: 'True Romance',
-    director: 'Tony Scott'
+    director: 'Tony Scott',
+    genre: ''
   },
 
   {
     title: 'Mulholland Drived',
-    director: 'Paul Thomas Anderson'
+    director: 'Paul Thomas Anderson',
+    genre: ''
   },
 
   {
     title: 'Pet Semetary',
-    director: 'Mary Lambert'
+    director: 'Mary Lambert',
+    genre: ''
   },
 
   {
     title: 'The Shawshank Redemption',
-    director: 'Frank Darabont'
+    director: 'Frank Darabont',
+    genre: ''
   },
 
   {
     title: 'Amélie',
-    director: 'Jean-Pierre Jeunet'
+    director: 'Jean-Pierre Jeunet',
+    genre: ''
   },
 
   {
     title: 'Coco',
-    director: 'Lee Unkrich'
+    director: 'Lee Unkrich',
+    genre: ''
   },
 
   {
     title: 'Full Metal Jacket',
-    director: 'Stanley Kubrick'
+    director: 'Stanley Kubrick',
+    genre: ''
   },
 
   {
     title: 'The Lost Boys',
-    director: 'Joel Schumacher'
+    director: 'Joel Schumacher',
+    genre: ''
   }
 
 ];
