@@ -11,9 +11,13 @@ let topFilms = [
   {
     title: 'Goodfellas',
     genre: '',
+    filmSummary: {},
+    filmPosterIMG: <img>link to image</img>,
     director: {
       name: 'Martin Scorcese',
-      dob: ''
+      birthYear: 0,
+      deathYear: 0,
+      dirBio: ''
     }
   },
 
