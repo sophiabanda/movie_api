@@ -6,13 +6,13 @@ const express = require('express'),
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
-let topFilms = [
+let movies = [
 
   {
     title: 'Goodfellas',
     genre: '',
     filmSummary: {},
-    filmPosterIMG: <img>link to image</img>,
+    filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
       birthYear: 0,
@@ -135,7 +135,7 @@ app.get('/documentation', (req, res) => {
 });
 
 app.get('/sophs_films', (req, res) => {
-  res.json(topFilms);
+  res.json(movies);
 });
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
