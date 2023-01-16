@@ -1,0 +1,7 @@
+body {
+    background-color: aliceblue;
+}
+
+table, th, td {
+    border-style: solid 5px;
+}

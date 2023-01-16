@@ -6,6 +6,17 @@ const express = require('express'),
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
+let user = [
+
+    {
+      firstName: 'Sophia',
+      lastName: 'Banda',
+      idNum: 123,
+      email: 'sophia@fakemail.com',
+      memberStatus: true
+    }
+  ]
+
 let movies = [
 
   {
@@ -129,14 +140,32 @@ app.get('/secreturl', (req, res) => {
 
 //sets directory from which to grab static files:
 app.use(express.static('public'));
+
 //get retrieves all that is requested below:
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', {root: __dirname});
 });
 
+//READ
 app.get('/sophs_films', (req, res) => {
-  res.json(movies);
+  res.status(200).json(movies);
+  // res.json(movies);
 });
+
+//READ
+app.get('/sophs_films/:title', (req, res) => {
+  // const title = req.params.title;
+  //Object destructuring:
+  const { title } = req.params;
+  const movie = movies.find(movie => movie.title === title);
+
+  if (movie) {
+    res.status(200).json(movie);
+  } else {
+    res.status(400).send('No such film.')
+  }
+});
+
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
   console.error(err.stack);
