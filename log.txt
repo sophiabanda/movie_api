@@ -220,3 +220,6 @@
 ::1 - - [18/Jan/2023:20:48:09 +0000] "GET /sophs_films/directors/Quentin%20Tarantino HTTP/1.1" 200 144 "-" "PostmanRuntime/7.30.0"
 ::1 - - [18/Jan/2023:20:48:23 +0000] "GET /sophs_films/genres/ HTTP/1.1" 400 13 "-" "PostmanRuntime/7.30.0"
 ::1 - - [18/Jan/2023:20:48:27 +0000] "GET /sophs_films/genres/drama HTTP/1.1" 200 70 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:53:28 +0000] "GET /sophs_films/genres/ HTTP/1.1" 400 13 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:53:32 +0000] "GET /sophs_films/genres HTTP/1.1" 400 13 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:53:42 +0000] "GET /sophs_films/genres/0 HTTP/1.1" 400 16 "-" "PostmanRuntime/7.30.0"

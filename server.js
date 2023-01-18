@@ -35,6 +35,11 @@ let films = [
       name: 'Martin Scorcese',
       birthDate: '',
       deathDate: ''
+    },
+    genre: {
+      0: 'crime',
+      1: 'biography',
+      3: 'drama'
     }
   },
 
@@ -47,81 +52,121 @@ let films = [
     },
     genre: {
       0: 'crime',
-      1: 'biography',
+      1: 'thriller',
       3: 'drama'
     }
+
   },
 
   {
     title: 'Casino',
     director: 'Martin Scorcese',
-    genre: ''
+    genre: {
+      0: 'crime',
+      1: 'drama'
+    }
   },
 
   {
     title: 'Punch Drunk Love',
     director: 'Paul Thomas Anderson',
-    genre: ''
+    genre: {
+      0: 'comedy',
+      1: 'drama',
+      2: 'romance'
+    }
   },
 
   {
     title: 'Magnolia',
     director: 'Paul Thomas Anderson',
-    genre: 'drama'
+    genre: {
+      0: 'drama'
+    }
   },
 
   {
     title: '2001: A Space Odyssey',
     director: 'Stanley Kubrick',
-    genre: ''
+    genre: {
+      0: 'adventure',
+      1: 'sci-fi'
+    }
   },
 
   {
     title: 'True Romance',
     director: 'Tony Scott',
-    genre: ''
+    genre: {
+      0: 'crime',
+      1: 'drama',
+      2: 'romance'
+    }
   },
 
   {
     title: 'Mulholland Drived',
     director: 'Paul Thomas Anderson',
-    genre: ''
+    genre: {
+      0: 'mystery',
+      1: 'drama',
+      2: 'thriller'
+    }
   },
 
   {
     title: 'Pet Semetary',
     director: 'Mary Lambert',
-    genre: ''
+    genre: {
+      0: 'fantasy',
+      1: 'horror',
+      2: 'thriller'
+    }
   },
 
   {
     title: 'The Shawshank Redemption',
     director: 'Frank Darabont',
-    genre: ''
+    genre: {
+      0: 'drama'
+    }
   },
 
   {
     title: 'Amélie',
     director: 'Jean-Pierre Jeunet',
-    genre: ''
+    genre: {
+      0: 'comedy',
+      1: 'romance'
+    }
   },
 
   {
     title: 'Coco',
     director: 'Lee Unkrich',
-    genre: ''
+    genre: {
+      0: 'animation',
+      1: 'adventure',
+      2: 'comedy'
+    }
   },
 
   {
     title: 'Full Metal Jacket',
     director: 'Stanley Kubrick',
-    genre: ''
+    genre: {
+      0: 'drama',
+      1: 'war'
+    }
   },
 
   {
     title: 'The Lost Boys',
     director: 'Joel Schumacher',
-    genre: ''
+    genre: {
+      0: 'comedy',
+      1: 'horror'
+    }
   }
 
 ];
