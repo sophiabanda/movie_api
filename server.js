@@ -20,16 +20,16 @@ let users = [
       lastName: 'Banda',
       idNum: 123,
       email: 'sophia@fakemail.com',
-      memberStatus: true
+      memberStatus: true,
+      favoriteFilms: []
     }
   ]
 
 let films = [
 
   {
-    title: 'Goodfellas',
-    genre: '',
-    filmSummary: {},
+    filmTitle: 'Goodfellas',
+    filmSummary: '',
     filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
@@ -44,7 +44,7 @@ let films = [
   },
 
   {
-    title: 'Jackie Brown',
+    filmTitle: 'Jackie Brown',
     director: {
       name: 'Quentin Tarantino',
       birthDate: '',
@@ -59,7 +59,7 @@ let films = [
   },
 
   {
-    title: 'Casino',
+    filmTitle: 'Casino',
     director: 'Martin Scorcese',
     genre: {
       0: 'crime',
@@ -68,7 +68,7 @@ let films = [
   },
 
   {
-    title: 'Punch Drunk Love',
+    filmTitle: 'Punch Drunk Love',
     director: 'Paul Thomas Anderson',
     genre: {
       0: 'comedy',
@@ -78,7 +78,7 @@ let films = [
   },
 
   {
-    title: 'Magnolia',
+    filmTitle: 'Magnolia',
     director: 'Paul Thomas Anderson',
     genre: {
       0: 'drama'
@@ -86,7 +86,7 @@ let films = [
   },
 
   {
-    title: '2001: A Space Odyssey',
+    filmTitle: '2001: A Space Odyssey',
     director: 'Stanley Kubrick',
     genre: {
       0: 'adventure',
@@ -95,7 +95,7 @@ let films = [
   },
 
   {
-    title: 'True Romance',
+    filmTitle: 'True Romance',
     director: 'Tony Scott',
     genre: {
       0: 'crime',
@@ -105,7 +105,7 @@ let films = [
   },
 
   {
-    title: 'Mulholland Drived',
+    filmTitle: 'Mulholland Drived',
     director: 'Paul Thomas Anderson',
     genre: {
       0: 'mystery',
@@ -115,7 +115,7 @@ let films = [
   },
 
   {
-    title: 'Pet Semetary',
+    filmTitle: 'Pet Semetary',
     director: 'Mary Lambert',
     genre: {
       0: 'fantasy',
@@ -125,7 +125,7 @@ let films = [
   },
 
   {
-    title: 'The Shawshank Redemption',
+    filmTitle: 'The Shawshank Redemption',
     director: 'Frank Darabont',
     genre: {
       0: 'drama'
@@ -133,7 +133,7 @@ let films = [
   },
 
   {
-    title: 'Amélie',
+    filmTitle: 'Amélie',
     director: 'Jean-Pierre Jeunet',
     genre: {
       0: 'comedy',
@@ -142,7 +142,7 @@ let films = [
   },
 
   {
-    title: 'Coco',
+    filmTitle: 'Coco',
     director: 'Lee Unkrich',
     genre: {
       0: 'animation',
@@ -152,7 +152,7 @@ let films = [
   },
 
   {
-    title: 'Full Metal Jacket',
+    filmTitle: 'Full Metal Jacket',
     director: 'Stanley Kubrick',
     genre: {
       0: 'drama',
@@ -161,7 +161,7 @@ let films = [
   },
 
   {
-    title: 'The Lost Boys',
+    filmTitle: 'The Lost Boys',
     director: 'Joel Schumacher',
     genre: {
       0: 'comedy',
@@ -212,7 +212,7 @@ app.get('/sophs_films', (req, res) => {
 });
 
 //READ
-app.get('/sophs_films/:title', (req, res) => {
+app.get('/sophs_films/:filmTitle', (req, res) => {
   // const title = req.params.title;
   //Object destructuring:
   const { title } = req.params;
@@ -250,7 +250,7 @@ app.get('/sophs_films/genres/:genreType', (req, res) => {
   });
 
 //CREATE
-app.post('/new_user', (req, res) => {
+app.post('/users', (req, res) => {
   const { newUser } =  req.body;
 
   if (newUser.firstName) {
@@ -261,6 +261,35 @@ app.post('/new_user', (req, res) => {
     res.status(400).send('Please input a valid name.')
   }
   });
+
+//UPDATE
+app.put('users/:idNum', (req, res) => {
+  const { idNum } = req.params;
+  const updatedUser = req.body;
+
+  let user = users.find( user => user.idNum == idNum);
+
+  if (user) {
+    user.name = udpatedUser.name;
+    res.status(200).json(user);
+  } else {
+    res.status(400).send('No such user.')
+  }
+});
+
+//CREATE
+app.put('users/:idNum/:filmTitle', (req, res) => {
+  const { idNum, filmTitle } = req.params;
+
+  let user = users.find( user => user.idNum == idNum);
+
+  if (user) {
+    user.favoriteFilms.push(filmTitle);
+    res.status(200).json(user);
+  } else {
+    res.status(400).send('No such user')
+  }
+});
 
 //DELETE
 
