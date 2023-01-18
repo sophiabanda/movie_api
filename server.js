@@ -5,14 +5,13 @@ const express = require('express'),
       fs = require('fs'),
       path = require('path'),
       //middleware for request types
-      bodyParser = require('body-parser');
-      // uuid = require('uuid');
+      bodyParser = require('body-parser'),
+      uuid = require('uuid');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
 app.use(bodyParser.json());
-// app.use(uuid);
 
 let user = [
 
@@ -206,16 +205,15 @@ app.get('/sophs_films/genres/:genreType', (req, res) => {
   });
 
 //CREATE
-app.post('/new_user', (req, res) => {
+app.post('/new_users', (req, res) => {
   const { newUser } =  req.body;
 
-  if (!newUser.name) {
-    const message = 'Missing name in request body.';
-    res.status(400).send(message);
+  if (!newUser.userName) {
+    res.status(400).send('Missing name in request body.');
   } else {
     newUser.id = uuid.v4();
     users.push(newUser);
-    res.status(201).send(newUser);
+    res.status(201).json(newUser);
   }
 });
 
