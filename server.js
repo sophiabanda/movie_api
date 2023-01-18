@@ -13,7 +13,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 app.use(bodyParser.json());
 
-let user = [
+let users = [
 
     {
       firstName: 'Sophia',
@@ -39,7 +39,7 @@ let films = [
     genre: {
       0: 'crime',
       1: 'biography',
-      3: 'drama'
+      2: 'drama'
     }
   },
 
@@ -53,7 +53,7 @@ let films = [
     genre: {
       0: 'crime',
       1: 'thriller',
-      3: 'drama'
+      2: 'drama'
     }
 
   },
@@ -228,7 +228,7 @@ app.get('/sophs_films/:title', (req, res) => {
 //READ
 app.get('/sophs_films/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
-  const director = films.find(film => film.director.name === directorName);
+  const director = films.find(film => film.director.name === directorName).director;
 
   if (director) {
     res.status(200).json(director);
@@ -240,7 +240,7 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
 //READ
 app.get('/sophs_films/genres/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const genre =  films.find(film => film.genre === genreType);
+  const genre =  films.find(film => film.genre === genreType).genre;
 
   if (genre) {
     res.status(200).json(genre);
@@ -250,17 +250,17 @@ app.get('/sophs_films/genres/:genreType', (req, res) => {
   });
 
 //CREATE
-app.post('/new_users', (req, res) => {
+app.post('/new_user', (req, res) => {
   const { newUser } =  req.body;
 
-  if (!newUser.userName) {
-    res.status(400).send('Missing name in request body.');
-  } else {
-    newUser.id = uuid.v4();
+  if (newUser.firstName) {
+    newUser.idNum = uuid.v4();
     users.push(newUser);
     res.status(201).json(newUser);
+  } else {
+    res.status(400).send('Please input a valid name.')
   }
-});
+  });
 
 //DELETE
 
