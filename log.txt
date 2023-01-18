@@ -215,3 +215,8 @@
 ::1 - - [18/Jan/2023:20:40:25 +0000] "POST /new_users HTTP/1.1" 404 149 "-" "PostmanRuntime/7.30.0"
 ::ffff:127.0.0.1 - - [18/Jan/2023:20:40:39 +0000] "GET /new_users HTTP/1.1" 404 148 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
 ::ffff:127.0.0.1 - - [18/Jan/2023:20:40:47 +0000] "GET /sophs_films HTTP/1.1" 200 1087 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+::1 - - [18/Jan/2023:20:47:27 +0000] "GET /sophs_films/directors/Quentin%20Tarantino HTTP/1.1" 500 2 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:47:56 +0000] "GET /sophs_films/directors/Quentin%20Tarantino HTTP/1.1" 500 2 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:48:09 +0000] "GET /sophs_films/directors/Quentin%20Tarantino HTTP/1.1" 200 144 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:48:23 +0000] "GET /sophs_films/genres/ HTTP/1.1" 400 13 "-" "PostmanRuntime/7.30.0"
+::1 - - [18/Jan/2023:20:48:27 +0000] "GET /sophs_films/genres/drama HTTP/1.1" 200 70 "-" "PostmanRuntime/7.30.0"

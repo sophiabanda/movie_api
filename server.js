@@ -186,7 +186,7 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
   const director = films.find(film => film.director.name === directorName);
 
   if (director) {
-    res.send(200).json(director);
+    res.status(200).json(director);
   } else {
     res.status(400).send('Director not found.')
   }
