@@ -17,7 +17,7 @@ let user = [
     }
   ]
 
-let movies = [
+let films = [
 
   {
     title: 'Goodfellas',
@@ -26,15 +26,18 @@ let movies = [
     filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
-      birthYear: 0,
-      deathYear: 0,
-      dirBio: ''
+      birthDate: '',
+      deathDate: ''
     }
   },
 
   {
     title: 'Jackie Brown',
-    director: 'Quentin Tarantino',
+    director: {
+      name: 'Quentin Tarantino',
+      birthDate: '',
+      deathDate: ''
+    },
     genre: ''
   },
 
@@ -148,8 +151,8 @@ app.get('/documentation', (req, res) => {
 
 //READ
 app.get('/sophs_films', (req, res) => {
-  res.status(200).json(movies);
-  // res.json(movies);
+  res.status(200).json(films);
+  // res.json(films);
 });
 
 //READ
@@ -157,12 +160,23 @@ app.get('/sophs_films/:title', (req, res) => {
   // const title = req.params.title;
   //Object destructuring:
   const { title } = req.params;
-  const movie = movies.find(movie => movie.title === title);
+  const film = films.find(film => film.title === title);
 
-  if (movie) {
-    res.status(200).json(movie);
+  if (film) {
+    res.status(200).json(film);
   } else {
     res.status(400).send('No such film.')
+  }
+});
+
+app.get('/sophs_films/directors/:directorName', (req, res) => {
+  const { directorName } = req.params;
+  const director = films.find(films.director.name === directorName);
+
+  if (director) {
+    res.send(200).json(director);
+  } else {
+    res.status(400).send('Director not found.')
   }
 });
 
