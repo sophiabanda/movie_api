@@ -180,6 +180,17 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
   }
 });
 
+app.get('/sophs_films/genres/:genreType', (req, res) => {
+  const { genreType } = req.params;
+  const genre =  films.find(films.genre === genreType);
+
+  if (genre) {
+    res.status(200).json(genre);
+  } else {
+    res.status(400).send('Genre not found.')
+  }
+  });
+
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
   console.error(err.stack);
