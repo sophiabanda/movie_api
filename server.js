@@ -1,10 +1,14 @@
 const express = require('express'),
       morgan = require('morgan'),
       fs = require('fs'),
-      path = require('path');
+      path = require('path'),
+      bodyParser = require('body-parser'),
+      uuid = require('uuid');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
+
+app.use(bodyParser.json());
 
 let user = [
 
@@ -169,6 +173,7 @@ app.get('/sophs_films/:title', (req, res) => {
   }
 });
 
+//READ
 app.get('/sophs_films/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
   const director = films.find(films.director.name === directorName);
@@ -180,6 +185,7 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
   }
 });
 
+//READ
 app.get('/sophs_films/genres/:genreType', (req, res) => {
   const { genreType } = req.params;
   const genre =  films.find(films.genre === genreType);
@@ -190,6 +196,11 @@ app.get('/sophs_films/genres/:genreType', (req, res) => {
     res.status(400).send('Genre not found.')
   }
   });
+
+//CREATE
+app.post('new_user', (req, res) => {
+
+})
 
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
