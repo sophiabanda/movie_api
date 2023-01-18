@@ -1,14 +1,18 @@
 const express = require('express'),
+      //morgan middleware
       morgan = require('morgan'),
+      //used to write server activity to a log file
       fs = require('fs'),
       path = require('path'),
-      bodyParser = require('body-parser'),
-      uuid = require('uuid');
+      //middleware for request types
+      bodyParser = require('body-parser');
+      // uuid = require('uuid');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
 app.use(bodyParser.json());
+// app.use(uuid);
 
 let user = [
 
@@ -42,7 +46,11 @@ let films = [
       birthDate: '',
       deathDate: ''
     },
-    genre: ''
+    genre: {
+      0: 'crime',
+      1: 'biography',
+      3: 'drama'
+    }
   },
 
   {
@@ -60,7 +68,7 @@ let films = [
   {
     title: 'Magnolia',
     director: 'Paul Thomas Anderson',
-    genre: ''
+    genre: 'drama'
   },
 
   {
@@ -176,7 +184,7 @@ app.get('/sophs_films/:title', (req, res) => {
 //READ
 app.get('/sophs_films/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
-  const director = films.find(films.director.name === directorName);
+  const director = films.find(film => film.director.name === directorName);
 
   if (director) {
     res.send(200).json(director);
@@ -188,7 +196,7 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
 //READ
 app.get('/sophs_films/genres/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const genre =  films.find(films.genre === genreType);
+  const genre =  films.find(film => film.genre === genreType);
 
   if (genre) {
     res.status(200).json(genre);
@@ -198,9 +206,20 @@ app.get('/sophs_films/genres/:genreType', (req, res) => {
   });
 
 //CREATE
-app.post('new_user', (req, res) => {
+app.post('/new_user', (req, res) => {
+  const { newUser } =  req.body;
 
-})
+  if (!newUser.name) {
+    const message = 'Missing name in request body.';
+    res.status(400).send(message);
+  } else {
+    newUser.id = uuid.v4();
+    users.push(newUser);
+    res.status(201).send(newUser);
+  }
+});
+
+//DELETE
 
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
