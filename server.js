@@ -59,6 +59,39 @@ let films = [
       directorBio: 'Jean-Pierre Jeunet is a French film director, producer and screenwriter. His films combine fantasy, realism and science fiction to create idealized realities or to give relevance to mundane situations.'
     },
   },
+  {
+    filmTitle: 'Coco',
+    genre: 'romantic comedy',
+    filmSummary: '',
+    filmPosterIMG: '',
+    director: {
+      name: 'Lee Unkrich',
+      birthDate: '1967',
+      directorBio: 'Lee Edward Unkrich is an American film director, film editor, screenwriter, and animator. He was a longtime member of the creative team at Pixar, where he started in 1994 as a film editor. He later began directing, first as co-director of Toy Story 2.'
+    },
+  },
+  {
+    filmTitle: 'Full Metal Jacket',
+    genre: 'war',
+    filmSummary: '',
+    filmPosterIMG: '',
+    director: {
+      name: 'Jean-Pierre Jeunet',
+      birthDate: '11/17/1942',
+      directorBio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.'
+    },
+  },
+  {
+    filmTitle: 'Pet Sematary',
+    genre: 'horror',
+    filmSummary: '',
+    filmPosterIMG: '',
+    director: {
+      name: 'Mary Lambert',
+      birthDate: '10/13/1951',
+      directorBio: 'Mary Lambert Gary is an American director. She has directed music videos, television episodes and feature films, mainly in the horror genre.'
+    },
+  },
 ]
 
 const myLogger = (req, res, next) => {
@@ -78,7 +111,7 @@ app.use(morgan('combined', {stream: accessLogStream}));
 
 
 app.get('/', (req, res) => {
-  let responseMessage = "Welcome to a list of my favorite films." + " ";
+  let responseMessage = "Welcome to a list of my favorite films.";
   responseMessage += '<small>Requested at:' + req.requestTimeStamp + '</small>';
   res.send(responseMessage);
 });
@@ -101,84 +134,54 @@ app.get('/sophs_films', (req, res) => {
 });
 
 //READ
-app.get('/sophs_films/:filmTitle', (req, res) => {
-  // const title = req.params.title;
-  //Object destructuring:
+app.get('/sophs_films/:title', (req, res) => {
   const { title } = req.params;
-  const { film } = films.find(film => film.filmTitle === title).filmTitle;
+  const film = films.find(film => film.filmTitle === title).filmTitle;
 
   if (film) {
     res.status(200).json(film);
   } else {
-    res.status(400).send('No such film.')
+    res.status(400).send('No such film.');
   }
 });
 
 //READ
-app.get('/sophs_films/directors/:directorName', (req, res) => {
-  const { directorName } = req.params;
-  const { director } = films.find(film => film.director.name === directorName);
-
-  if (director) {
-    res.status(200).json(director);
-  } else {
-    res.status(400).send('Director not found.')
-  }
-});
-
-//READ
-app.get('/sophs_films/genres/:genreType', (req, res) => {
+app.get('/sophs_films/genre/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const { genre } =  films.find(film => film.genre === genreType);
+  const genre = films.find(film => film.genre === genreType);
 
   if (genre) {
     res.status(200).json(genre);
   } else {
-    res.status(400).send('Genre not found.')
+    res.status(400).send('No such genre.');
   }
-  });
+});
+
+//READ
+app.get('/sophs_films/director/:directorName', (req, res) => {
+  const { directorName } = req.params;
+  const director = films.find(film => film.director.name === directorName);
+
+  if (director) {
+    res.status(200).json(director);
+  } else {
+    res.status(400).send('No such director.');
+  }
+});
 
 //CREATE
 app.post('/users', (req, res) => {
-  const { newUser } =  req.body;
+  const newUser = req.body;
 
-  if (newUser.firstName) {
+  if(newUser.name) {
     newUser.idNum = uuid.v4();
     users.push(newUser);
-    res.status(201).json(newUser);
+    res.status(201).json(newUser)
   } else {
-    res.status(400).send('Please input a valid name.')
+    res.status(400).send('Users need names.')
   }
-  });
+})
 
-//UPDATE
-app.put('users/:idNum', (req, res) => {
-  const { idNum } = req.params;
-  const updatedUser = req.body;
-
-  let user = users.find( user => user.idNum == idNum);
-
-  if (user) {
-    user.name = udpatedUser.name;
-    res.status(200).json(user);
-  } else {
-    res.status(400).send('No such user.')
-  }
-});
-
-//CREATE
-app.put('users/:idNum/:filmTitle', (req, res) => {
-  const { idNum, filmTitle } = req.params;
-
-  let user = users.find( user => user.idNum == idNum);
-
-  if (user) {
-    user.favoriteFilms.push(filmTitle);
-    res.status(200).json(user);
-  } else {
-    res.status(400).send('No such user')
-  }
-});
 
 //DELETE
 
