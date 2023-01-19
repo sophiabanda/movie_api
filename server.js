@@ -26,150 +26,40 @@ let users = [
   ]
 
 let films = [
-
   {
     filmTitle: 'Goodfellas',
+    genre: 'biography',
     filmSummary: '',
     filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
-      birthDate: '',
-      deathDate: ''
+      birthDate: '11/17/1942',
+      directorBio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.'
     },
-    genre: {
-      0: 'crime',
-      1: 'biography',
-      2: 'drama'
-    }
   },
-
-  {
-    filmTitle: 'Jackie Brown',
-    director: {
-      name: 'Quentin Tarantino',
-      birthDate: '',
-      deathDate: ''
-    },
-    genre: {
-      0: 'crime',
-      1: 'thriller',
-      2: 'drama'
-    }
-
-  },
-
-  {
-    filmTitle: 'Casino',
-    director: 'Martin Scorcese',
-    genre: {
-      0: 'crime',
-      1: 'drama'
-    }
-  },
-
-  {
-    filmTitle: 'Punch Drunk Love',
-    director: 'Paul Thomas Anderson',
-    genre: {
-      0: 'comedy',
-      1: 'drama',
-      2: 'romance'
-    }
-  },
-
   {
     filmTitle: 'Magnolia',
-    director: 'Paul Thomas Anderson',
-    genre: {
-      0: 'drama'
-    }
+    genre: 'drama',
+    filmSummary: '',
+    filmPosterIMG: '',
+    director: {
+      name: 'Paul Thomas Anderson',
+      birthDate: '1970',
+      directorBio: 'Paul Thomas Anderson, also known by his initials PTA, is an American filmmaker. His films have consistently garnered critical acclaim.'
+    },
   },
-
   {
-    filmTitle: '2001: A Space Odyssey',
-    director: 'Stanley Kubrick',
-    genre: {
-      0: 'adventure',
-      1: 'sci-fi'
-    }
+    filmTitle: 'Amelie',
+    genre: 'romantic comedy',
+    filmSummary: '',
+    filmPosterIMG: '',
+    director: {
+      name: 'Jean-Pierre Jeunet',
+      birthDate: '1953',
+      directorBio: 'Jean-Pierre Jeunet is a French film director, producer and screenwriter. His films combine fantasy, realism and science fiction to create idealized realities or to give relevance to mundane situations.'
+    },
   },
-
-  {
-    filmTitle: 'True Romance',
-    director: 'Tony Scott',
-    genre: {
-      0: 'crime',
-      1: 'drama',
-      2: 'romance'
-    }
-  },
-
-  {
-    filmTitle: 'Mulholland Drived',
-    director: 'Paul Thomas Anderson',
-    genre: {
-      0: 'mystery',
-      1: 'drama',
-      2: 'thriller'
-    }
-  },
-
-  {
-    filmTitle: 'Pet Semetary',
-    director: 'Mary Lambert',
-    genre: {
-      0: 'fantasy',
-      1: 'horror',
-      2: 'thriller'
-    }
-  },
-
-  {
-    filmTitle: 'The Shawshank Redemption',
-    director: 'Frank Darabont',
-    genre: {
-      0: 'drama'
-    }
-  },
-
-  {
-    filmTitle: 'Amélie',
-    director: 'Jean-Pierre Jeunet',
-    genre: {
-      0: 'comedy',
-      1: 'romance'
-    }
-  },
-
-  {
-    filmTitle: 'Coco',
-    director: 'Lee Unkrich',
-    genre: {
-      0: 'animation',
-      1: 'adventure',
-      2: 'comedy'
-    }
-  },
-
-  {
-    filmTitle: 'Full Metal Jacket',
-    director: 'Stanley Kubrick',
-    genre: {
-      0: 'drama',
-      1: 'war'
-    }
-  },
-
-  {
-    filmTitle: 'The Lost Boys',
-    director: 'Joel Schumacher',
-    genre: {
-      0: 'comedy',
-      1: 'horror'
-    }
-  }
-
-];
+]
 
 const myLogger = (req, res, next) => {
   console.log(req.url);
@@ -208,7 +98,6 @@ app.get('/documentation', (req, res) => {
 //READ
 app.get('/sophs_films', (req, res) => {
   res.status(200).json(films);
-  // res.json(films);
 });
 
 //READ
@@ -216,7 +105,7 @@ app.get('/sophs_films/:filmTitle', (req, res) => {
   // const title = req.params.title;
   //Object destructuring:
   const { title } = req.params;
-  const film = films.find(film => film.title === title);
+  const { film } = films.find(film => film.filmTitle === title).filmTitle;
 
   if (film) {
     res.status(200).json(film);
@@ -228,7 +117,7 @@ app.get('/sophs_films/:filmTitle', (req, res) => {
 //READ
 app.get('/sophs_films/directors/:directorName', (req, res) => {
   const { directorName } = req.params;
-  const director = films.find(film => film.director.name === directorName).director;
+  const { director } = films.find(film => film.director.name === directorName);
 
   if (director) {
     res.status(200).json(director);
@@ -240,7 +129,7 @@ app.get('/sophs_films/directors/:directorName', (req, res) => {
 //READ
 app.get('/sophs_films/genres/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const genre =  films.find(film => film.genre === genreType).genre;
+  const { genre } =  films.find(film => film.genre === genreType);
 
   if (genre) {
     res.status(200).json(genre);
