@@ -173,17 +173,71 @@ app.get('/sophs_films/director/:directorName', (req, res) => {
 app.post('/users', (req, res) => {
   const newUser = req.body;
 
-  if(newUser.name) {
+  if(newUser.firstName || newUser.lastName) {
     newUser.idNum = uuid.v4();
     users.push(newUser);
     res.status(201).json(newUser)
   } else {
     res.status(400).send('Users need names.')
-  }
-})
+  };
+});
 
+//UPDATE
+app.put('/users/:idNum', (req, res) => {
+  const {idNum } = req.params;
+  const udpatedUser = req.body;
+
+  let user = users.find(user => user.idNum == idNum);
+
+  if(user) {
+    user.firstName = udpatedUser.firstName;
+    res.status(200).json(user)
+  } else {
+    res.status(400).send('User not found.');
+  }
+});
+
+//UPDATE
+app.put('/users/:idNum/:filmTitle', (req, res) => {
+  const { idNum, filmTitle } = req.params;
+
+  let user = users.find(user => user.idNum == idNum);
+
+  if(user) {
+    user.favoriteFilms.push(filmTitle);
+    res.status(200).send(`${filmTitle} has been added to user ${idNum}'s favorite films.`)
+  } else {
+    res.status(400).send('User not found.');
+  }
+});
 
 //DELETE
+app.delete('/users/:idNum/:filmTitle', (req, res) => {
+  const { idNum, filmTitle } = req.params;
+
+  let user = users.find(user => user.idNum == idNum);
+
+  if(user) {
+    user.favoriteFilms = user.favoriteFilms.filter(title => title !== filmTitle);
+    res.status(200).send(`${filmTitle} has been removed from user ${idNum}'s favorite films.`)
+  } else {
+    res.status(400).send('User not found.');
+  }
+});
+
+//DELETE
+app.delete('/users/:idNum', (req, res) => {
+  const { idNum } = req.params;
+
+  let user = users.find(user => user.idNum == idNum);
+
+  if(user) {
+    users = users.filter(user => user.idNum == idNum);
+    res.status(200).send(`User ${idNum} has been deleted.`)
+  } else {
+    res.status(400).send('User not found.');
+  }
+});
 
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
