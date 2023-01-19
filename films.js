@@ -143,39 +143,3 @@ let films = [
     }
 
   ];
-
-  let films2 = [
-    {
-      filmTitle: 'Goodfellas',
-      genre: 'biography',
-      filmSummary: '',
-      filmPosterIMG: '',
-      director: {
-        name: 'Martin Scorcese',
-        birthDate: '11/17/1942',
-        directorBio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.'
-      },
-    },
-    {
-      filmTitle: 'Magnolia',
-      genre: 'drama',
-      filmSummary: '',
-      filmPosterIMG: '',
-      director: {
-        name: 'Paul Thomas Anderson',
-        birthDate: '1970',
-        directorBio: 'Paul Thomas Anderson, also known by his initials PTA, is an American filmmaker. His films have consistently garnered critical acclaim.'
-      },
-    },
-    {
-      filmTitle: 'Amelie',
-      genre: 'romantic comedy',
-      filmSummary: '',
-      filmPosterIMG: '',
-      director: {
-        name: 'Jean-Pierre Jeunet',
-        birthDate: '1953',
-        directorBio: 'Jean-Pierre Jeunet is a French film director, producer and screenwriter. His films combine fantasy, realism and science fiction to create idealized realities or to give relevance to mundane situations.'
-      },
-    },
-  ]
