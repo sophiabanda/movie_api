@@ -28,7 +28,10 @@ let users = [
 let films = [
   {
     filmTitle: 'Goodfellas',
-    genre: 'biography',
+    genre: {
+      type: 'biography',
+      description: `A biography is simply the story of a real person's life. It could be about a person who is still alive, someone who lived centuries ago, someone who is globally famous, an unsung hero forgotten by history, or even a unique group of people.`
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
@@ -39,7 +42,10 @@ let films = [
   },
   {
     filmTitle: 'Magnolia',
-    genre: 'drama',
+    genre: {
+      type: 'drama',
+      description: 'Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between.'
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
@@ -50,7 +56,10 @@ let films = [
   },
   {
     filmTitle: 'Amelie',
-    genre: 'romantic comedy',
+    genre: {
+      type: 'romantic comedy',
+      description: 'Romantic comedy (also known as romcom or rom-com) is a subgenre of comedy and slice of life fiction, focusing on lighthearted, humorous plot lines centered on romantic ideas, such as how true love is able to surmount most obstacles.'
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
@@ -61,7 +70,10 @@ let films = [
   },
   {
     filmTitle: 'Coco',
-    genre: 'romantic comedy',
+    genre: {
+      type: 'animated',
+      description: 'Animation is a method by which still figures are manipulated to appear as moving images. In traditional animation, images are drawn or painted by hand on transparent celluloid sheets to be photographed and exhibited on film. Today, most animations are made with computer-generated imagery.'
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
@@ -72,7 +84,10 @@ let films = [
   },
   {
     filmTitle: 'Full Metal Jacket',
-    genre: 'war',
+    genre: {
+      type: 'war',
+      description: 'War film is a film genre concerned with warfare, typically about naval, air, or land battles, with combat scenes central to the drama.'
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
@@ -83,7 +98,10 @@ let films = [
   },
   {
     filmTitle: 'Pet Sematary',
-    genre: 'horror',
+    genre: {
+      type: 'horror',
+      description: 'Horror is a film genre that seeks to elicit fear or disgust in its audience for entertainment purposes. Horror films often explore dark subject matter and may deal with transgressive topics or themes. Broad elements include monsters, apocalyptic events, and religious or folk beliefs.'
+    },
     filmSummary: '',
     filmPosterIMG: '',
     director: {
