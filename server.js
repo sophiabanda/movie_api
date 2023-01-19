@@ -166,7 +166,7 @@ app.get('/sophs_films/:title', (req, res) => {
 //READ
 app.get('/sophs_films/genre/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const genre = films.find(film => film.genre === genreType);
+  const genre = films.find(film => film.genre.type === genreType);
 
   if (genre) {
     res.status(200).json(genre);

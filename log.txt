@@ -317,3 +317,5 @@
 ::1 - - [19/Jan/2023:18:36:39 +0000] "DELETE /users/123/ HTTP/1.1" 200 26 "-" "PostmanRuntime/7.30.0"
 ::1 - - [19/Jan/2023:18:37:08 +0000] "PUT /users/123/Coco HTTP/1.1" 200 49 "-" "PostmanRuntime/7.30.0"
 ::1 - - [19/Jan/2023:18:37:22 +0000] "DELETE /users/123/Coco HTTP/1.1" 200 53 "-" "PostmanRuntime/7.30.0"
+::1 - - [19/Jan/2023:18:57:38 +0000] "GET /sophs_films HTTP/1.1" 200 3603 "-" "PostmanRuntime/7.30.0"
+::1 - - [19/Jan/2023:18:57:49 +0000] "GET /sophs_films/genre/horror HTTP/1.1" 200 608 "-" "PostmanRuntime/7.30.0"
