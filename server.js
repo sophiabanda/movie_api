@@ -284,6 +284,7 @@ app.get('/sophs_films', (req, res) => {
 });
 
 //READ
+//Get films by title
 app.get('/sophs_films/:title', (req, res) => {
   const { title } = req.params;
   const film = films.find(film => film.filmTitle.list === title);
@@ -295,17 +296,8 @@ app.get('/sophs_films/:title', (req, res) => {
   }
 });
 
-// app.get('/sophs_films/genre/:genreType', (req, res) => {
-//   const { genreType } = req.params;
-//   const genre = films.find(film => film.genre.type === genreType);
-
-//   if (genre) {
-//     res.status(200).json(genre);
-//   } else {
-//     res.status(400).send('No such genre.');
-//   }
-// });
-
+//READ
+//Return movie with specified genres
 app.get('/sophs_films/genre/:genreType', (req, res) => {
   const { genreType } = req.params;
   const genre = films.filter(film => film.genre.includes(genreType));
@@ -319,6 +311,7 @@ app.get('/sophs_films/genre/:genreType', (req, res) => {
 
 
 //READ
+//Get info on a particular director
 app.get('/sophs_films/director/:directorName', (req, res) => {
   const { directorName } = req.params;
   const director = films.find(film => film.director.name === directorName);
@@ -331,6 +324,7 @@ app.get('/sophs_films/director/:directorName', (req, res) => {
 });
 
 //CREATE
+//Creates new user
 app.post('/users', (req, res) => {
   const newUser = req.body;
 
@@ -344,6 +338,7 @@ app.post('/users', (req, res) => {
 });
 
 //UPDATE
+//Updates user name
 app.put('/users/:idNum', (req, res) => {
   const {idNum } = req.params;
   const udpatedUser = req.body;
@@ -359,6 +354,7 @@ app.put('/users/:idNum', (req, res) => {
 });
 
 //UPDATE
+//Adds a fav to films
 app.put('/users/:idNum/:filmTitle', (req, res) => {
   const { idNum, filmTitle } = req.params;
 
@@ -373,6 +369,7 @@ app.put('/users/:idNum/:filmTitle', (req, res) => {
 });
 
 //DELETE
+//Deletes user fav film
 app.delete('/users/:idNum/:filmTitle', (req, res) => {
   const { idNum, filmTitle } = req.params;
 
@@ -387,6 +384,7 @@ app.delete('/users/:idNum/:filmTitle', (req, res) => {
 });
 
 //DELETE
+//Deletes user
 app.delete('/users/:idNum', (req, res) => {
   const { idNum } = req.params;
 
