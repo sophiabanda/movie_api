@@ -23,33 +23,43 @@
                 <td>GET</td>
             </tr>
             <tr>
+                <td>Get films by title</td>
+                <td> /sophs_films/:title</td>
+                <td>GET</td>
+            </tr>
+            <tr>
                 <td>Films by genre</td>
-                <td>/sophs_films/genres/[genre]</td>
+                <td>/sophs_films/genre/:genreType</td>
                 <td>GET</td>
             </tr>
             <tr>
                 <td>Get info on a specific director</td>
-                <td>/sophs_films/directors/[firstName_lastName]</td>
+                <td>/sophs_films/director/:directorName</td>
                 <td>GET</td>
             </tr>
             <tr>
                 <td>Register user</td>
-                <td>/new_user</td>
+                <td>/users</td>
                 <td>POST</td>
             </tr>
             <tr>
                 <td>De-register user</td>
-                <td>/delete_user</td>
+                <td>/users/:idNum</td>
+                <td>DELETE</td>
+            </tr>
+            <tr>
+                <td>Update user name</td>
+                <td>/users/:idNum</td>
                 <td>DELETE</td>
             </tr>
             <tr>
                 <td>Add a film to your favorites</td>
-                <td>/add_film</td>
+                <td>/users/:idNum/:filmTitle</td>
                 <td>POST</td>
             </tr>
             <tr>
                 <td>Remove a film from your favorites</td>
-                <td>/remove_film</td>
+                <td>/users/:idNum/:filmTitle</td>
                 <td>DELETE</td>
             </tr>
         </table>
