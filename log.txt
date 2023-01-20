@@ -357,3 +357,8 @@
 ::1 - - [20/Jan/2023:00:41:00 +0000] "GET /sophs_films/genre/crime HTTP/1.1" 500 16 "-" "PostmanRuntime/7.30.0"
 ::1 - - [20/Jan/2023:00:41:10 +0000] "GET /sophs_films/ HTTP/1.1" 200 3966 "-" "PostmanRuntime/7.30.0"
 ::1 - - [20/Jan/2023:00:42:43 +0000] "GET /sophs_films/genre/drama HTTP/1.1" 500 16 "-" "PostmanRuntime/7.30.0"
+::ffff:127.0.0.1 - - [20/Jan/2023:01:08:17 +0000] "GET /documentation HTTP/1.1" 200 2016 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [20/Jan/2023:01:08:17 +0000] "GET /styles.css HTTP/1.1" 304 - "http://127.0.0.1:8080/documentation" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [20/Jan/2023:01:08:17 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://127.0.0.1:8080/documentation" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [20/Jan/2023:01:09:10 +0000] "GET /documentation HTTP/1.1" 200 2013 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+::ffff:127.0.0.1 - - [20/Jan/2023:01:09:10 +0000] "GET /styles.css HTTP/1.1" 304 - "http://127.0.0.1:8080/documentation" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
