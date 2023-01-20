@@ -185,16 +185,28 @@ app.get('/sophs_films/:title', (req, res) => {
 });
 
 //READ
-app.get('/sophs_films/genre/:genreType', (req, res) => {
-  const { genreType } = req.params;
-  const genre = films.find(film => film.genre.type === genreType);
+// app.get('/sophs_films/genre/:genreType', (req, res) => {
+//   const { genreType } = req.params;
+//   const genre = films.filter(film => film.genre.type.includes(genreType));
 
-  if (genre) {
-    res.status(200).json(genre);
-  } else {
+//   if (genre) {
+//   res.status(200).json(genre);
+//   } else {
+//   res.status(400).send('No such genre.');
+//   }
+//   });
+
+  //READ
+  app.get('/sophs_films/genre/:genreType', (req, res) => {
+    const { genreType } = req.params;
+    const genre = films.find(film => film.genre.type.includes(genreType));
+
+    if (genre) {
+    res.status(200).json(genre.genre.type);
+    } else {
     res.status(400).send('No such genre.');
-  }
-});
+    }
+    });
 
 //READ
 app.get('/sophs_films/director/:directorName', (req, res) => {
