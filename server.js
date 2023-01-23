@@ -293,23 +293,37 @@ app.get('/sophs_films/:title', (req, res) => {
 
 //READ
 //Return movie with specified genres
+// app.get('/sophs_films/genre/:genreType', (req, res) => {
+//   const { genreType } = req.params;
+//   const genre = films.filter(film => film.genre.includes(genreType));
+
+//   if (genre) {
+//   res.status(200).json(genre);
+//   } else {
+//   res.status(400).send('No such genre.');
+//   }
+//   });
+
+//READ
 app.get('/sophs_films/genre/:genreType', (req, res) => {
   const { genreType } = req.params;
-  const genre = films.filter(film => film.genre.includes(genreType));
+  const genre = films.filter(film => film.genre.name === genreType);
 
   if (genre) {
-  res.status(200).json(genre);
+    res.status(200).json(genre)
   } else {
-  res.status(400).send('No such genre.');
+    res.status(400).send('No such genre');
   }
-  });
+});
+
+
 
 
 //READ
 //Get info on a particular director
 app.get('/sophs_films/director/:directorName', (req, res) => {
   const { directorName } = req.params;
-  const director = films.find(film => film.director.name === directorName);
+  const director = films.filter(film => film.director.name === directorName);
 
   if (director) {
     res.status(200).json(director);
