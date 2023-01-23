@@ -36,11 +36,10 @@ let users = [
         birthDate: '11/17/1942',
         directorBio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.'
       },
-      genre: [
-        'crime',
-        'biography',
-        'drama'
-      ]
+      genre: {
+        name: 'biography',
+        description: `A biography is simply the story of a real person's life. It could be about a person who is still alive, someone who lived centuries ago, someone who is globally famous, an unsung hero forgotten by history, or even a unique group of people.`
+      }
     },
 
     {
@@ -52,11 +51,10 @@ let users = [
         birthDate: '03/27/1963',
         directorBio: 'Quentin Jerome Tarantino is an American film director, writer, producer, and actor. His films are characterized by frequent references to popular culture and film genres, non-linear storylines, dark humor, stylized violence, extended dialogue, pervasive use of profanity, cameos and ensemble casts.'
       },
-      genre: [
-        'crime',
-        'thriller',
-        'drama'
-      ]
+      genre: {
+        name: 'drama',
+        description: 'Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between.'
+      }
     },
 
     {
@@ -68,10 +66,10 @@ let users = [
         birthDate: '11/17/1942',
         directorBio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.'
       },
-      genre: [
-        'crime',
-        'drama'
-      ]
+      genre: {
+        name: 'crime',
+        description: 'Crime thrillers focus on the exciting elements of both successful and unsuccessful crimes. Unlike police procedurals, they focus on a criminal or a group of criminals rather than law enforcement. These films tend to focus on conspiracies and psychopathology of criminals, and are often violent and nihilistic.'
+      }
     },
 
     {
@@ -83,11 +81,10 @@ let users = [
         birthDate: '1970',
         directorBio: 'Paul Thomas Anderson, also known by his initials PTA, is an American filmmaker. His films have consistently garnered critical acclaim.'
       },
-      genre: [
-        'comedy',
-        'drama',
-        'romance'
-      ]
+      genre: {
+        name: 'romance',
+       description: 'Romance films or movies involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured.'
+      }
     },
 
     {
@@ -99,9 +96,10 @@ let users = [
         birthDate: '1970',
         directorBio: 'Paul Thomas Anderson, also known by his initials PTA, is an American filmmaker. His films have consistently garnered critical acclaim.'
       },
-      genre: [
-        'drama'
-      ]
+      genre: {
+        name: 'drama',
+        description: `Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between.`
+      }
     },
 
     {
@@ -113,10 +111,10 @@ let users = [
         birthDate: '07/26/1928',
         directorBio: 'Stanley Kubrick was an American film director, producer, screenwriter, and photographer. Widely considered one of the greatest filmmakers of all time, his films, almost all of which are adaptations of novels or short stories, cover a wide range of genres and are noted for their innovative cinematography, dark humor, realistic attention to detail and extensive set designs.'
       },
-      genre: [
-        'adventure',
-        'sci-fi'
-      ]
+      genre: {
+        name: 'sci-fi',
+        description: 'Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel, time travel, or other technologies.'
+      }
     },
 
     {
@@ -128,11 +126,10 @@ let users = [
         birthDate: '06/21/1944',
         directorBio: 'Anthony David Leighton Scott was an English film director and producer. He was known for directing highly successful action and thriller films such as Top Gun, Beverly Hills Cop II, Days of Thunder, The Last Boy Scout, True Romance, Crimson Tide, Enemy of the State, Man on Fire, Déjà Vu, and Unstoppable.'
       },
-      genre: [
-        'crime',
-        'drama',
-        'romance'
-      ]
+      genre: {
+        name: 'crime',
+        description: 'Crime thrillers focus on the exciting elements of both successful and unsuccessful crimes. Unlike police procedurals, they focus on a criminal or a group of criminals rather than law enforcement. These films tend to focus on conspiracies and psychopathology of criminals, and are often violent and nihilistic.'
+      }
     },
 
     {
@@ -144,11 +141,10 @@ let users = [
         birthDate: '01/20/1946',
         directorBio: `David Keith Lynch is an American filmmaker, visual artist and actor. A recipient of an Academy Honorary Award in 2019, Lynch has received three Academy Award nominations for Best Director, and the César Award for Best Foreign Film twice, as well as the Palme d'Or at the Cannes Film Festival and a Golden Lion award for lifetime achievement at the Venice Film Festival. In 2007, a panel of critics convened by The Guardian announced that "after all the discussion, no one could fault the conclusion that David Lynch is the most important film-maker of the current era", while AllMovie called him "the Renaissance man of modern American filmmaking". His work led to him being labeled "the first populist surrealist" by film critic Pauline Kael.`
       },
-      genre: [
-        'mystery',
-        'drama',
-        'thriller'
-      ]
+      genre: {
+        name: 'mystery',
+        description: 'A mystery film is a genre of film that revolves around the solution of a problem or a crime. It focuses on the efforts of the detective, private investigator or amateur sleuth to solve the mysterious circumstances of an issue by means of clues, investigation, and clever deduction.'
+      }
     },
 
     {
@@ -160,11 +156,10 @@ let users = [
         birthDate: '10/13/1951',
         directorBio: 'Mary Lambert Gary is an American director. She has directed music videos, television episodes and feature films, mainly in the horror genre.'
       },
-      genre: [
-        'fantasy',
-        'horror',
-        'thriller'
-      ]
+      genre: {
+        name: 'horror',
+        description: 'Horror films may incorporate incidents of physical violence and psychological terror; they may be studies of deformed, disturbed, psychotic, or evil characters; stories of terrifying monsters or malevolent animals; or mystery thrillers that use atmosphere to build suspense.'
+      }
     },
 
     {
@@ -176,9 +171,10 @@ let users = [
         birthDate: '01/28/1959',
         directorBio: 'Frank Árpád Darabont is an American film director, screenwriter and producer. He has been nominated for three Academy Awards and a Golden Globe Award. In his early career, he was primarily a screenwriter for such horror films as A Nightmare on Elm Street 3: Dream Warriors, The Blob and The Fly II.'
       },
-      genre: [
-        'drama'
-      ]
+      genre: {
+        name: 'drama',
+        description: 'Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between.'
+      }
     },
 
     {
@@ -190,10 +186,10 @@ let users = [
         birthDate: '1953',
         directorBio: 'Jean-Pierre Jeunet is a French film director, producer and screenwriter. His films combine fantasy, realism and science fiction to create idealized realities or to give relevance to mundane situations.'
       },
-      genre: [
-        'romance',
-        'comedy'
-      ]
+      genre: {
+        name: 'romance',
+       description: 'Romance films or movies involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured.'
+      }
     },
 
     {
@@ -205,11 +201,10 @@ let users = [
         birthDate: '1967',
         directorBio: 'Lee Edward Unkrich is an American film director, film editor, screenwriter, and animator. He was a longtime member of the creative team at Pixar, where he started in 1994 as a film editor. He later began directing, first as co-director of Toy Story 2.'
       },
-      genre: [
-        'animation',
-        'adventure',
-        'comedy'
-      ]
+      genre: {
+        name: 'animation',
+        description: 'An animated movie or cartoon, is made up of a series of slightly different drawings of people, animals, and objects that make them appear to move.'
+      }
     },
 
     {
@@ -221,10 +216,10 @@ let users = [
         birthDate: '07/26/1928',
         directorBio: 'Stanley Kubrick was an American film director, producer, screenwriter, and photographer. Widely considered one of the greatest filmmakers of all time, his films, almost all of which are adaptations of novels or short stories, cover a wide range of genres and are noted for their innovative cinematography, dark humor, realistic attention to detail and extensive set designs.'
       },
-      genre: [
-        'war',
-        'drama'
-      ]
+      genre: {
+        name: 'war',
+        description: 'War film is a film genre concerned with warfare, typically about naval, air, or land battles, with combat scenes central to the drama'
+      }
     },
 
     {
@@ -236,10 +231,10 @@ let users = [
         birthDate: '08/29/1939',
         directorBio: 'Joel T. Schumacher was an American film director, producer and screenwriter. Raised in New York City by his mother, Schumacher graduated from Parsons School of Design and originally became a fashion designer. He first entered filmmaking as a production and costume designer before gaining writing credits on Car Wash, Sparkle, and The Wiz.'
       },
-      genre: [
-        'comedy',
-        'horror'
-      ]
+      genre: {
+        name: 'comedy',
+        description: 'A comedy film is a category of film which emphasizes humor. These films are designed to make the audience laugh through amusement. Films in this style traditionally have a happy ending (black comedy being an exception). Comedy is one of the oldest genres in film and it is derived from the classical comedy in theatre.'
+      }
     }
 
   ];
