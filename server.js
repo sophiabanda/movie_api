@@ -317,8 +317,6 @@ app.get('/sophs_films/genre/:genreType', (req, res) => {
 });
 
 
-
-
 //READ
 //Get info on a particular director
 app.get('/sophs_films/director/:directorName', (req, res) => {
