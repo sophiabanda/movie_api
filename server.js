@@ -148,7 +148,7 @@ let users = [
     },
 
     {
-      filmTitle: 'Pet Semetary',
+      filmTitle: 'Pet Sematary',
       filmSummary: '',
       filmPosterIMG: '',
       director: {
