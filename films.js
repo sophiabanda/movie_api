@@ -2,7 +2,7 @@ let films = [
 
   {
     filmTitle: 'Goodfellas',
-    filmSummary: '',
+    filmSummary: 'A young man grows up in the mob and works very hard to advance himself through the ranks. He enjoys his life of money and luxury, but is oblivious to the horror that he causes. A drug addiction and a few mistakes ultimately unravel his climb to the top. Based on the book "Wiseguy" by Nicholas Pileggi.',
     filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
@@ -18,7 +18,7 @@ let films = [
 
   {
     filmTitle: 'Jackie Brown',
-    filmSummary: '',
+    filmSummary: 'When flight attendant Jackie Brown (Pam Grier) is busted smuggling money for her arms dealer boss, Ordell Robbie (Samuel L. Jackson), agent Ray Nicolette (Michael Keaton) and detective Mark Dargus (Michael Bowen) want her help to bring down Robbie. Facing jail time for her silence or death for her cooperation, Brown decides instead to double-cross both parties and make off with the smuggled money. Meanwhile, she enlists the help of bondsman Max Cherry (Robert Forster), a man who loves her.',
     filmPosterIMG: '',
     director: {
       name: 'Quentin Tarantino',
@@ -34,7 +34,7 @@ let films = [
 
   {
     filmTitle: 'Casino',
-    filmSummary: '',
+    filmSummary: `In early-1970s Las Vegas, low-level mobster Sam "Ace" Rothstein (Robert De Niro) gets tapped by his bosses to head the Tangiers Casino. At first, he's a great success in the job, but over the years, problems with his loose-cannon enforcer Nicky Santoro (Joe Pesci), his ex-hustler wife Ginger (Sharon Stone), her con-artist ex Lester Diamond (James Woods) and a handful of corrupt politicians put Sam in ever-increasing danger. Martin Scorsese directs this adaptation of Nicholas Pileggi's book.`,
     filmPosterIMG: '',
     director: {
       name: 'Martin Scorcese',
@@ -49,7 +49,7 @@ let films = [
 
   {
     filmTitle: 'Punch Drunk Love',
-    filmSummary: '',
+    filmSummary: `Although susceptible to violent outbursts, bathroom supply business owner Barry Egan (Adam Sandler) is a timid and shy man by disposition, leading a lonely, uneventful life -- partly due to the constant berating he suffers from his seven sisters. However, several events transpire that shake up Egan's mundane existence, one of which is falling in love with one sister's co-worker, Lena Leonard (Emily Watson). But the romance is threatened when Egan falls victim to an extortionist.`,
     filmPosterIMG: '',
     director: {
       name: 'Paul Thomas Anderson',
@@ -65,7 +65,7 @@ let films = [
 
   {
     filmTitle: 'Magnolia',
-    filmSummary: '',
+    filmSummary: 'On one random day in the San Fernando Valley, a dying father, a young wife, a male caretaker, a famous lost son, a police officer in love, a boy genius, an ex-boy genius, a game show host and an estranged daughter will each become part of a dazzling multiplicity of plots, but one story.',
     filmPosterIMG: '',
     director: {
       name: 'Paul Thomas Anderson',
@@ -79,7 +79,7 @@ let films = [
 
   {
     filmTitle: '2001: A Space Odyssey',
-    filmSummary: '',
+    filmSummary: `An imposing black structure provides a connection between the past and the future in this enigmatic adaptation of a short story by revered sci-fi author Arthur C. Clarke. When Dr. Dave Bowman (Keir Dullea) and other astronauts are sent on a mysterious mission, their ship's computer system, HAL, begins to display increasingly strange behavior, leading up to a tense showdown between man and machine that results in a mind-bending trek through space and time.`,
     filmPosterIMG: '',
     director: {
       name: 'Stanley Kubrick',
@@ -94,7 +94,7 @@ let films = [
 
   {
     filmTitle: 'True Romance',
-    filmSummary: '',
+    filmSummary: `A comic-book nerd and Elvis fanatic Clarence (Christian Slater) and a prostitute named Alabama (Patricia Arquette) fall in love. Clarence breaks the news to her pimp and ends up killing him. He grabs a suitcase of cocaine on his way out thinking it is Alabama's clothing. The two hit the road for California hoping to sell the cocaine, but the mob is soon after them.`,
     filmPosterIMG: '',
     director: {
       name: 'Tony Scott',
@@ -126,7 +126,7 @@ let films = [
 
   {
     filmTitle: 'Pet Semetary',
-    filmSummary: '',
+    filmSummary: `Doctor Louis Creed (Dale Midkiff) moves his family to Maine, where he meets a friendly local named Jud Crandall (Fred Gwynne). After the Creeds' cat is accidentally killed, Crandall advises Louis to bury it in the ground near the old pet cemetery. The cat returns to life, its personality changed for the worse. When Louis' son, Gage (Miko Hughes), dies tragically, Louis decides to bury the boy's body in the same ground despite the warnings of Crandall and Louis' visions of a deceased patient.`,
     filmPosterIMG: '',
     director: {
       name: 'Mary Lambert',
@@ -155,8 +155,8 @@ let films = [
   },
 
   {
-    filmTitle: 'Amélie',
-    filmSummary: '',
+    filmTitle: 'Amelie',
+    filmSummary: 'Amélie" is a fanciful comedy about a young woman who discretely orchestrates the lives of the people around her, creating a world exclusively of her own making. Shot in over 80 Parisian locations, acclaimed director Jean-Pierre Jeunet ("Delicatessen"; "The City of Lost Children") invokes his incomparable visionary style to capture the exquisite charm and mystery of modern-day Paris through the eyes of a beautiful ingenue.',
     filmPosterIMG: '',
     director: {
       name: 'Jean-Pierre Jeunet',
@@ -171,7 +171,7 @@ let films = [
 
   {
     filmTitle: 'Coco',
-    filmSummary: '',
+    filmSummary: `Despite his family's generations-old ban on music, young Miguel dreams of becoming an accomplished musician like his idol Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead. After meeting a charming trickster named Héctor, the two new friends embark on an extraordinary journey to unlock the real story behind Miguel's family history.`,
     filmPosterIMG: '',
     director: {
       name: 'Lee Unkrich',
@@ -187,7 +187,7 @@ let films = [
 
   {
     filmTitle: 'Full Metal Jacket',
-    filmSummary: '',
+    filmSummary: `Stanley Kubrick's take on the Vietnam War follows smart-aleck Private Davis (Matthew Modine), quickly christened "Joker" by his foul-mouthed drill sergeant (R. Lee Ermey), and pudgy Private Lawrence (Vincent D'Onofrio), nicknamed "Gomer Pyle," as they endure the rigors of basic training. Though Pyle takes a frightening detour, Joker graduates to the Marine Corps and is sent to Vietnam as a journalist, covering -- and eventually participating in -- the bloody Battle of Hué.`,
     filmPosterIMG: '',
     director: {
       name: 'Stanley Kubrick',
@@ -202,7 +202,7 @@ let films = [
 
   {
     filmTitle: 'The Lost Boys',
-    filmSummary: '',
+    filmSummary: 'The Lost Boys is a 1987 American supernatural black comedy horror film directed by Joel Schumacher, produced by Harvey Bernhard with a screenplay written by Jeffrey Boam, Janice Fischer and James Jeremias, from a story by Fischer and Jeremias.',
     filmPosterIMG: '',
     director: {
       name: 'Joel Schumacher',
@@ -216,3 +216,39 @@ let films = [
   }
 
 ];
+
+let genre = [
+
+  {
+    type: '',
+    description: '',
+    id: 00001
+  },
+
+  {
+    type: '',
+    description: '',
+    id: 00002
+  },
+  {
+    type: '',
+    description: '',
+    id: 00003
+  },
+  {
+    type: '',
+    description: '',
+    id: 00004
+  },
+  {
+    type: '',
+    description: '',
+    id: 00005
+  },
+  {
+    type: '',
+    description: '',
+    id: 00006
+  },
+
+]
