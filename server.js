@@ -28,9 +28,9 @@ let users = [
   let films = [
 
     {
-      filmTitle: 'Goodfellas',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Goodfellas',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Martin Scorcese',
         birthDate: '11/17/1942',
@@ -43,9 +43,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Jackie Brown',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Jackie Brown',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Quentin Tarantino',
         birthDate: '03/27/1963',
@@ -58,9 +58,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Casino',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Casino',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Martin Scorcese',
         birthDate: '11/17/1942',
@@ -73,9 +73,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Punch Drunk Love',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Punch Drunk Love',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Paul Thomas Anderson',
         birthDate: '1970',
@@ -88,9 +88,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Magnolia',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Magnolia',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Paul Thomas Anderson',
         birthDate: '1970',
@@ -103,9 +103,9 @@ let users = [
     },
 
     {
-      filmTitle: '2001: A Space Odyssey',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: '2001: A Space Odyssey',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Stanley Kubrick',
         birthDate: '07/26/1928',
@@ -118,9 +118,9 @@ let users = [
     },
 
     {
-      filmTitle: 'True Romance',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'True Romance',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Tony Scott',
         birthDate: '06/21/1944',
@@ -133,9 +133,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Mulholland Drive',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Mulholland Drive',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'David Lynch',
         birthDate: '01/20/1946',
@@ -148,9 +148,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Pet Sematary',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Pet Sematary',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Mary Lambert',
         birthDate: '10/13/1951',
@@ -163,9 +163,9 @@ let users = [
     },
 
     {
-      filmTitle: 'The Shawshank Redemption',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'The Shawshank Redemption',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Frank Darabont',
         birthDate: '01/28/1959',
@@ -178,9 +178,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Amélie',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Amélie',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Jean-Pierre Jeunet',
         birthDate: '1953',
@@ -193,9 +193,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Coco',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Coco',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Lee Unkrich',
         birthDate: '1967',
@@ -208,9 +208,9 @@ let users = [
     },
 
     {
-      filmTitle: 'Full Metal Jacket',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'Full Metal Jacket',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Stanley Kubrick',
         birthDate: '07/26/1928',
@@ -223,9 +223,9 @@ let users = [
     },
 
     {
-      filmTitle: 'The Lost Boys',
-      filmSummary: '',
-      filmPosterIMG: '',
+      Title: 'The Lost Boys',
+      Summary: '',
+      filmPosterImg: '',
       director: {
         name: 'Joel Schumacher',
         birthDate: '08/29/1939',
@@ -282,7 +282,7 @@ app.get('/sophs_films', (req, res) => {
 //Get films by title
 app.get('/sophs_films/:title', (req, res) => {
   const { title } = req.params;
-  const film = films.find(film => film.filmTitle.list === title);
+  const film = films.find(film => film.Title.list === title);
 
   if (film) {
     res.status(200).json(film);

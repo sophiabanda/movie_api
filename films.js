@@ -220,35 +220,58 @@ let films = [
 let genre = [
 
   {
-    type: '',
-    description: '',
-    id: 00001
+    type: 'biography',
+    description: `A biography is simply the story of a real person's life. It could be about a person who is still alive, someone who lived centuries ago, someone who is globally famous, an unsung hero forgotten by history, or even a unique group of people.`,
+    _id: 01
   },
 
   {
-    type: '',
-    description: '',
-    id: 00002
+    type: 'drama',
+    description: "Drama Films are serious presentations or stories with settings or life situations that portray realistic characters in conflict with either themselves, others, or forces of nature. A dramatic film shows us human beings at their best, their worst, and everything in-between.",
+    id: 02
   },
   {
-    type: '',
-    description: '',
-    id: 00003
+    type: 'crime',
+    description: "Crime thrillers focus on the exciting elements of both successful and unsuccessful crimes. Unlike police procedurals, they focus on a criminal or a group of criminals rather than law enforcement. These films tend to focus on conspiracies and psychopathology of criminals, and are often violent and nihilistic.",
+    id: 03
   },
   {
-    type: '',
-    description: '',
-    id: 00004
+    type: 'romance',
+    description: "Romance films or movies involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating, courtship or marriage is featured.",
+    id: 04
   },
   {
-    type: '',
-    description: '',
-    id: 00005
+    type: 'sci-fi',
+    description: "Science fiction (or sci-fi) is a film genre that uses speculative, fictional science-based depictions of phenomena that are not fully accepted by mainstream science, such as extraterrestrial lifeforms, spacecraft, robots, cyborgs, interstellar travel, time travel, or other technologies.",
+    id: 05
   },
   {
-    type: '',
-    description: '',
-    id: 00006
+    type: 'mystery',
+    description: "A mystery film is a genre of film that revolves around the solution of a problem or a crime. It focuses on the efforts of the detective, private investigator or amateur sleuth to solve the mysterious circumstances of an issue by means of clues, investigation, and clever deduction.",
+    id: 06
   },
+
+  {
+    type: 'horror',
+    description: "Horror films may incorporate incidents of physical violence and psychological terror; they may be studies of deformed, disturbed, psychotic, or evil characters; stories of terrifying monsters or malevolent animals; or mystery thrillers that use atmosphere to build suspense.",
+    id: 07
+  },
+  {
+    type: 'animation',
+    description: 'An animated movie or cartoon, is made up of a series of slightly different drawings of people, animals, and objects that make them appear to move.',
+    id: 08
+  },
+
+  {
+    type: 'war',
+    description: "War film is a film genre concerned with warfare, typically about naval, air, or land battles, with combat scenes central to the drama.",
+    id: 09
+  },
+  {
+    type: 'adventure',
+    description: "Adventure film is a genre that revolves around the conquests and explorations of a protagonist. The purpose of the conquest can be to retrieve a person or treasure, but often the main focus is simply the pursuit of the unknown. These films generally take place in exotic locations and play on historical myths."
+  },
+
+
 
 ]
