@@ -16,12 +16,11 @@ app.use(bodyParser.json());
 let users = [
 
     {
-      firstName: 'Sophia',
-      lastName: 'Banda',
-      idNum: 123,
+      _id: '',
+      Name: 'Sophia Banda',
       email: 'sophia@fakemail.com',
-      memberStatus: true,
-      favoriteFilms: []
+      Birthday: '',
+      Favorites: []
     }
   ]
 
