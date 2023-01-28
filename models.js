@@ -4,8 +4,8 @@ let filmSchema = mongoose.Schema(
     {
         Title: {type: String, required: true},
         Summary: {type: String, required: true},
-        Genres: [{ type: mongoose.Schema.Genres.ObjectId, ref: 'Genre', required: true }],
-        Director: { type: mongoose.Schema.Directors.ObjectId, ref: 'Director', required: true},
+        Genres: [{ type: mongoose.Types.ObjectId, ref: 'Genre', required: true }],
+        Director: { type: mongoose.Types.ObjectId, ref: 'Director', required: true},
         filmPosterImg: String,
         Featured: Boolean
     }
@@ -17,7 +17,7 @@ let userSchema = mongoose.Schema(
         Email: {type: String, required: true},
         Password: {type: String, required: true},
         Birthday: Date,
-        Favorites: [{type: mongoose.Schema.films.ObjectId, ref: 'Film'}]
+        Favorites: [{type: mongoose.Types.ObjectId, ref: 'Film'}]
     }
 );
 
