@@ -107,16 +107,61 @@ app.get('/users/:Name', (req, res) => {
 });
 
 //Return list of films by Genre
+// app.get('/films/genre/:genreType', (req, res) => {
+//   Films.findOne({ Genre: req.params.genreType})
+//   .then((film) => {
+//     res.status(200).json(film)
+//   })
+//   .catch((err) => {
+//     res.status(500).send('Error ' + err);
+//   });
+// });
+//This is currently only displaying the first in the array of films. Even without the parameters in the object after findOne. Why  ? ? ? ?
+
+// app.get('/films/genre/:genreType', (req, res) => {
+//   Genre.findOne( { Genres: req.params.Genre} )
+//   .then((film) => {
+//     res.status(200).json(film)
+//   })
+//   .catch((err) => {
+//     res.status(500).send('Error ' + err);
+//   });
+// });
+//Returns the first genre type and desc of the array. Why?
+
 app.get('/films/genre/:genreType', (req, res) => {
-  Films.findOne( { Genre: req.params.Genre} )
-  .then((film) => {
-    res.status(200).json(film)
-  })
-  .catch((err) => {
-    res.status(500).send('Error ' + err);
+  //First retrieve the Genre doc with the matching Type:
+  Genre.findOne({ Type: req.params.genreType })
+  //Then retrrieve Films with matching genre id:
+   .then((genre) => {
+    Films.find({ Genres: genre._id })
+    .then((films) => {
+      res.status(200).json(films)
+    })
+    .catch((err) => {
+      res.status(500).send('Error ' + err);
+     });
+    })
   });
+
+app.get('/films/director/:directorName', (req, res) => {
+  // First retrieve the Director doc with the matching name:
+  Director.findOne({ Name: req.params.directorName })
+    .then((director) => {
+      // Then retrieve all Films with matching director id:
+      Films.find({ Director: director._id })
+        .then((films) => {
+          res.status(200).json(films);
+        })
+        .catch((err) => {
+          res.status(500).send(`Error: ${err}`);
+        });
+    })
+    ////Second error catch for the films search
+    .catch((err) => {
+      res.status(500).send(`Error: ${err}`);
+    });
 });
-//This is currently only displaying the first in the array of films. Why  ? ? ? ?
 
 
 //Update User
@@ -204,6 +249,11 @@ app.use(express.static('public'));
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', {root: __dirname});
 });
+
+//Delete a User by username
+app.delete('/users/:userName', (req, res) => {
+
+})
 
 //READ
 // app.get('/sophs_films', (req, res) => {
