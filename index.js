@@ -91,9 +91,23 @@ app.get('/users', (req, res) => {
   });
 });
 
-//Find User by Name
+// Find User by Name
 app.get('/users/:Name', (req, res) => {
   Users.findOne({ Name: req.params.Name })
+  .then((user) => {
+    if(user) {
+      res.json(user);
+    } else {
+      res.status(404).send('No such user.')
+    }
+  })
+  .catch((err) => {
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+app.get('/users/id/:id', (req, res) => {
+  Users.findOne( { _id: req.params.id} )
   .then((user) => {
     if(user) {
       res.json(user);
@@ -251,10 +265,35 @@ app.get('/documentation', (req, res) => {
 });
 
 //Delete a User by username
-app.delete('/users/:userName', (req, res) => {
+app.delete('/users/:Username', (req, res) => {
+  Users.findOneAndRemove({ Name: req.params.Username }, { _id: req.params.userId})
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 
-})
-
+app.delete('/users/id/:id', (req, res) => {
+  Users.findOneAndRemove( {id: req.params.id })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
 //READ
 // app.get('/sophs_films', (req, res) => {
 //   res.status(200).json(films);
@@ -362,18 +401,18 @@ app.delete('/users/:idNum/:filmTitle', (req, res) => {
 
 //DELETE
 //Deletes user
-app.delete('/users/:idNum', (req, res) => {
-  const { idNum } = req.params;
+// app.delete('/users/:idNum', (req, res) => {
+//   const { idNum } = req.params;
 
-  let user = users.find(user => user.idNum == idNum);
+//   let user = users.find(user => user.idNum == idNum);
 
-  if(user) {
-    users = users.filter(user => user.idNum == idNum);
-    res.status(200).send(`User ${idNum} has been deleted.`)
-  } else {
-    res.status(400).send('User not found.');
-  }
-});
+//   if(user) {
+//     users = users.filter(user => user.idNum == idNum);
+//     res.status(200).send(`User ${idNum} has been deleted.`)
+//   } else {
+//     res.status(400).send('User not found.');
+//   }
+// });
 
 //returns "something broke!" if there is an error delivering on any of the above:
 app.use((err, req, res, next) => {
