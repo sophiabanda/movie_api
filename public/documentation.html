@@ -13,46 +13,130 @@
     <div class="table">
         <table class="table">
             <tr>
-                <th>REQUEST</th>
+                <th>BUSINESS LOGIC</th>
                 <th>URL</th>
                 <th>HTTP METHOD</th>
+                <th>REQUEST BODY</th>
+                <th>RESPONSE BODY DATA FORMAT</th>
             </tr>
             <tr>
                 <td>Get a list of all films</td>
-                <td>/sophs_films</td>
+                <td>/films</td>
                 <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing the list of films and their data</td>
             </tr>
             <tr>
                 <td>Get films by title</td>
-                <td> /sophs_films/:title</td>
+                <td>/films/[Film Title]</td>
                 <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing a specified film and its data.</td>
             </tr>
             <tr>
-                <td>Films by genre</td>
-                <td>/sophs_films/genre/:genreType</td>
+                <td>Get films by genre</td>
+                <td>/films/genre/[Name of Genre]</td>
                 <td>GET</td>
+                <td>None</td>
+                <td>An array of JSON objects containing films with the specified associated genre.</td>
             </tr>
             <tr>
-                <td>Get info on a specific director</td>
-                <td>/sophs_films/director/:directorName</td>
+                <td>Get films by director name</td>
+                <td>/films/director/:directorName</td>
                 <td>GET</td>
+                <td>None</td>
+                <td>A JSON object returning a list of films by the specified director.</td>
+            </tr>
+            <tr>
+                <td>Get a list of all registered users</td>
+                <td>/users</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>An array of JSON objects contianing user data</td>
             </tr>
             <tr>
                 <td>Register user</td>
                 <td>/users</td>
                 <td>POST</td>
+                <td> And object with a minimum of name, email and password. Example:<br>
+                    <br>
+                    {<br>
+                        <br>
+                        "Name": "New Userman",<br>
+                        "Email": "newuserman@fakemail.com",<br>
+                        "Password": "63d1a05f0a578gH51"<br>
+                        <br>
+                    }
+                </td>
+                <td>
+                    {<br>
+                        <br>
+                        "Name": "New Userman",<br>
+                        "Email": "newuserman@fakemail.com",<br>
+                        "Password": "63d1a05f0a578gH51",<br>
+                        "Favorites": [],<br>
+                        "_id": "",<br>
+                        "__v":<br>
+                        <br>
+                    }
+                </td>
             </tr>
             <tr>
-                <td>De-register user</td>
-                <td>/users/:idNum</td>
-                <td>DELETE</td>
+                <td>Find user by User Name</td>
+                <td>/users/[User Name]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing info on specified user</td>
             </tr>
             <tr>
-                <td>Update user name</td>
-                <td>/users/:idNum</td>
+                <td>Find user by user id #</td>
+                <td>/users/id/[id #]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing info on specified user</td>
+            </tr>
+            <tr>
+                <td>Update user information</td>
+                <td>/users</td>
                 <td>PUT</td>
+                <td>The field you wish to update. Example:<br>
+                    <br>
+                    <br>
+                    {<br>
+                        <br>
+                        "Name": "Updated Name" <br>
+                        <br>
+                    }
+
+                </td>
+                <td>
+                    {<br>
+                        <br>
+                        "_id": "xxxx",<br>
+                        "Name": "Updated Name",<br>
+                        "Email": "xyz@mail.com",<br>
+                        "Password": "xxxx",<br>
+                        "Favorites": [],<br>
+                        "__v": 0<br>
+                        <br>
+                    }
+                </td>
             </tr>
             <tr>
+                <td>De-register user by name</td>
+                <td>/users/[User Name]</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A confirmation code (200) and confirmation message, i.e. "Soandso User was deleted"</td>
+            </tr>
+            <tr>
+                <td>De-register user by id #</td>
+                <td>/users/id/[id #]</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>A confirmation code (200) and confirmation message, i.e. "Soandso User was deleted"</td>
+            </tr>
+            <!-- <tr>
                 <td>Add a film to your favorites</td>
                 <td>/users/:idNum/:filmTitle</td>
                 <td>PUT</td>
@@ -61,7 +145,7 @@
                 <td>Remove a film from your favorites</td>
                 <td>/users/:idNum/:filmTitle</td>
                 <td>DELETE</td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </body>
