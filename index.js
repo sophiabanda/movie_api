@@ -19,6 +19,8 @@ const mongoose = require('mongoose');
 
 const Films = Models.Film;
 const Users = Models.User;
+const Director = Models.Director;
+const Genre = Models.Genre;
 
 mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -40,6 +42,10 @@ app.use(morgan('common'));
 app.use(morgan('combined', {stream: accessLogStream}));
 
 
+app.get('/', (req, res) => {
+  res.status(201).send('Welcome to my film database!')
+})
+//Create new User
 app.post('/users', (req, res) => {
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
@@ -73,7 +79,7 @@ app.post('/users', (req, res) => {
 //   res.send(responseMessage);
 // });
 
-//
+// Return all Users
 app.get('/users', (req, res) => {
   Users.find()
   .then((users) => {
@@ -85,19 +91,111 @@ app.get('/users', (req, res) => {
   });
 });
 
+//Find User by Name
 app.get('/users/:Name', (req, res) => {
   Users.findOne({ Name: req.params.Name })
   .then((user) => {
-    res.json(user);
+    if(user) {
+      res.json(user);
+    } else {
+      res.status(404).send('No such user.')
+    }
   })
   .catch((err) => {
     res.status(500).send('Error: ' + err);
   });
 });
 
-app.get('/secreturl', (req, res) => {
-  res.send('This is a secret url with super top-secret content.');
+//Return list of films by Genre
+app.get('/films/genre/:genreType', (req, res) => {
+  Films.findOne( { Genre: req.params.Genre} )
+  .then((film) => {
+    res.status(200).json(film)
+  })
+  .catch((err) => {
+    res.status(500).send('Error ' + err);
+  });
 });
+//This is currently only displaying the first in the array of films. Why  ? ? ? ?
+
+
+//Update User
+app.put('/users/:Name', (req, res) => {
+  Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
+    {
+      Name: req.body.Name,
+      Email: req.body.Email,
+      Password: req.body.Password,
+      Birthday: req.body.Birthday
+    }
+  },
+  //ensures the new doc is returned:
+  { new: true },
+  (err, udpatedUser) => {
+    if(err) {
+      console.log(err);
+      res.status(500).send('Error ' + err);
+    } else {
+      res.json(udpatedUser);
+    }
+  });
+});
+
+//Update a Users Favorite Film
+app.post('/users/:Name/films/:filmID', (req,res) => {
+  Users.findOneAndUpdate( {Name: req.params.Name }, {
+    $push: { Favorites: req.params.filmID }
+  },
+  { new: true },
+  (err, updatedUser) => {
+    if(err) {
+      console.log(err);
+      res.status(500).send('Error ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  }
+  );
+});
+
+//Get list of films
+app.get('/films', (req, res) => {
+  Films.find()
+  .then((films) => {
+    res.status(201).json(films);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+//Get Film by Title
+app.get('/films/:Title', (req, res) => {
+  Films.findOne( {Title: req.params.Title} )
+  .then((film) => {
+    res.status(201).json(film)
+  })
+  .catch((err) => {
+    res.status(500).send('Error ' + err);
+  });
+});
+
+//Get list of directors
+app.get('/films/:directorName', (req, res) => {
+  Films.find( { Director: req.params.director})
+  .then((director) => {
+    res.status(201).json(director.name);
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).send('Error: ' + err);
+  });
+});
+
+// app.get('/secreturl', (req, res) => {
+//   res.send('This is a secret url with super top-secret content.');
+// });
 
 //sets directory from which to grab static files:
 app.use(express.static('public'));
@@ -108,61 +206,49 @@ app.get('/documentation', (req, res) => {
 });
 
 //READ
-app.get('/sophs_films', (req, res) => {
-  res.status(200).json(films);
-});
+// app.get('/sophs_films', (req, res) => {
+//   res.status(200).json(films);
+// });
 
 //READ
 // Get films by title
-app.get('/sophs_films/:title', (req, res) => {
-  const { title } = req.params;
-  const film = films.find(film => film.Title.list === title);
+// app.get('/sophs_films/:title', (req, res) => {
+//   const { title } = req.params;
+//   const film = films.find(film => film.Title.list === title);
 
-  if (film) {
-    res.status(200).json(film);
-  } else {
-    res.status(400).send('No such film.');
-  }
-});
+//   if (film) {
+//     res.status(200).json(film);
+//   } else {
+//     res.status(400).send('No such film.');
+//   }
+// });
 
 //READ
 //Return movie with specified genres
-app.get('/sophs_films/genre/:genreType', (req, res) => {
-  const { genreType } = req.params;
-  const genre = films.filter(film => film.genre.includes(genreType));
+// app.get('/sophs_films/genre/:genreType', (req, res) => {
+//   const { genreType } = req.params;
+//   const genre = films.filter(film => film.genre.includes(genreType));
 
-  if (genre) {
-  res.status(200).json(genre);
-  } else {
-  res.status(400).send('No such genre.');
-  }
-  });
-
-//READ
-app.get('/sophs_films/genre/:genreType', (req, res) => {
-  const { genreType } = req.params;
-  const genre = films.filter(film => film.genre.name === genreType);
-
-  if (genre) {
-    res.status(200).json(genre)
-  } else {
-    res.status(400).send('No such genre');
-  }
-});
+//   if (genre) {
+//   res.status(200).json(genre);
+//   } else {
+//   res.status(400).send('No such genre.');
+//   }
+//   });
 
 
 //READ
 //Get info on a particular director
-app.get('/sophs_films/director/:directorName', (req, res) => {
-  const { directorName } = req.params;
-  const director = films.filter(film => film.director.name === directorName);
+// app.get('/sophs_films/director/:directorName', (req, res) => {
+//   const { directorName } = req.params;
+//   const director = films.filter(film => film.director.name === directorName);
 
-  if (director) {
-    res.status(200).json(director);
-  } else {
-    res.status(400).send('No such director.');
-  }
-});
+//   if (director) {
+//     res.status(200).json(director);
+//   } else {
+//     res.status(400).send('No such director.');
+//   }
+// });
 
 //CREATE
 // Creates new user
