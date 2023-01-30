@@ -209,10 +209,44 @@ app.put('/users/:Name', (req, res) => {
 });
 
 
-//Add a Favorite Film to User's Favorites
+//Add a Favorite Film to User's Favorites by name
 app.post('/users/:Username/films/:filmTitle', (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
-    { $push: { Favorites: req.params.filmTitle } },
+    { $addToSet: { Favorites: req.params.filmTitle } },
+    { new: true },
+    (err, udpatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send('Error ' + err)
+      } else {
+        console.log('Added only if film does not already exist.')
+        res.status(200).json(udpatedUser);
+      }
+    }
+    );
+});
+
+//Add film to user favorites by film iD
+app.post('/users/:Username/films/:filmId', (req, res) => {
+  Users.findOneAndUpdate( { Name: req.params.Username },
+    { $addToSet: { Favorites: req.params.filmId } },
+    { new: true },
+    (err, udpatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send('Error ' + err)
+      } else {
+        console.log('Added only if film does not already exist.')
+        res.status(200).json(udpatedUser);
+      }
+    }
+    );
+});
+
+//Delete a Favorite Film from User's Favorites by name
+app.delete('/users/:Username/films/:filmTitle', (req, res) => {
+  Users.findOneAndUpdate( { Name: req.params.Username },
+    { $pull: { Favorites: req.params.filmTitle } },
     { new: true },
     (err, udpatedUser) => {
       if(err) {
@@ -224,7 +258,24 @@ app.post('/users/:Username/films/:filmTitle', (req, res) => {
     }
     );
 });
-//This still does not work for me so I did not move on to the delete version. 😭
+
+//Delete Favorite film from user favorites by film iD
+app.delete('/users/:Username/films/:filmId', (req, res) => {
+  Users.findOneAndUpdate( { Name: req.params.Username },
+    { $pull: { Favorites: req.params.filmId } },
+    { new: true },
+    (err, udpatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send('Error ' + err)
+      } else {
+        console.log('Added if new film.')
+        res.json(udpatedUser);
+      }
+    }
+    );
+});
+
 
 //Delete a User by Username "De-Register"
 app.delete('/users/:Username', (req, res) => {

@@ -24,7 +24,7 @@
                 <td>/films</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object containing the list of films and their data</td>
+                <td>A JSON object containing the list of films and their data.</td>
             </tr>
             <tr>
                 <td>Get films by title</td>
@@ -52,7 +52,7 @@
                 <td>/users</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>An array of JSON objects contianing user data</td>
+                <td>An array of JSON objects containing user data.</td>
             </tr>
             <tr>
                 <td>Register user</td>
@@ -86,14 +86,14 @@
                 <td>/users/[User Name]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object containing info on specified user</td>
+                <td>A JSON object containing info on specified user.</td>
             </tr>
             <tr>
-                <td>Find user by user id #</td>
+                <td>Find user by User id #</td>
                 <td>/users/id/[id #]</td>
                 <td>GET</td>
                 <td>None</td>
-                <td>A JSON object containing info on specified user</td>
+                <td>A JSON object containing info on specified user.</td>
             </tr>
             <tr>
                 <td>Update user information</td>
@@ -136,16 +136,34 @@
                 <td>None</td>
                 <td>A confirmation code (200) and confirmation message, i.e. "Soandso User was deleted"</td>
             </tr>
-            <!-- <tr>
-                <td>Add a film to your favorites</td>
-                <td>/users/:idNum/:filmTitle</td>
-                <td>PUT</td>
+            <tr>
+                <td>Add a film to your favorites by title</td>
+                <td>/users/[User Name]/films/[Film Title]</td>
+                <td>POST</td>
+                <td>None</td>
+                <td>Status code 200 and updated JSON object.</td>
             </tr>
             <tr>
-                <td>Remove a film from your favorites</td>
-                <td>/users/:idNum/:filmTitle</td>
+                <td>Add a film to your favorites by Film id</td>
+                <td>/users/[User Name]/films/[id #]</td>
+                <td>POST</td>
+                <td>None</td>
+                <td>Status code 200 and updated JSON object.</td>
+            </tr>
+            <tr>
+                <td>Remove a film from your favorites by Title</td>
+                <td>/users/[UserName]/films/[Film Title]</td>
                 <td>DELETE</td>
-            </tr> -->
+                <td>None</td>
+                <td>Status code 200 and updated JSON object.</td>
+            </tr>
+            <tr>
+                <td>Remove a film from your favorites by Film id</td>
+                <td>/users/[UserName]/films/[id #]</td>
+                <td>DELETE</td>
+                <td>None</td>
+                <td>Status code 200 and updated JSON object.</td>
+            </tr>
         </table>
     </div>
 </body>
