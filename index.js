@@ -211,7 +211,7 @@ app.put('/users/:Name', (req, res) => {
 
 //Add a Favorite Film to User's Favorites
 app.post('/users/:Username/films/:filmTitle', (req, res) => {
-  Users.findOneAndUpdate( { User: req.params.Username },
+  Users.findOneAndUpdate( { Name: req.params.Username },
     { $push: { Favorites: req.params.filmTitle } },
     { new: true },
     (err, udpatedUser) => {
