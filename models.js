@@ -19,7 +19,7 @@ let userSchema = mongoose.Schema(
         Birthday: Date,
         Favorites: {
             Film: { type: mongoose.Types.ObjectId, ref: 'Film'},
-            Title: { type: String }
+            Title: { type: String, ref: 'Film' }
         }
     }
 );
