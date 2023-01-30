@@ -1,29 +1,29 @@
 const express = require('express'),
-      //morgan middleware
+      //framework providing a broad set of features for the building of web and mobile apps
       morgan = require('morgan'),
-      //used to write server activity to a log file
+      //middleware for loggin http requests
       fs = require('fs'),
+      //used to write server activity to a log file
       path = require('path'),
-      //middleware for request types
+      //helps to route traffic logs
       bodyParser = require('body-parser'),
-      uuid = require('uuid'),
+      //middleware for allowing access to req.body from within routes to use that data. used when more than just the URL is hit (body data being sent)
+      // uuid = require('uuid'),
       Models = require('./models');
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require('mongoose');
-
-
 const Films = Models.Film;
 const Users = Models.User;
 const Directors = Models.Director;
 const Genres = Models.Genre;
 
 mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
-
 app.use(bodyParser.json());
 
 const myLogger = (req, res, next) => {
