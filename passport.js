@@ -9,7 +9,7 @@ let Users = Models.User,
 
     passport.use(new LocalStrategy({
         //HTTP auth for login. Takes username and passwrd from user body, uses mongoose to check db for same name.
-        usernameField: 'Username',
+        usernameField: 'Name',
         passwordField: 'Password'
     }, (username, password, callback) => {
         console.log(username + ' ' + password);
