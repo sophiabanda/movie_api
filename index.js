@@ -9,13 +9,17 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       //middleware for allowing access to req.body from within routes to use that data. used when more than just the URL is hit (body data being sent)
       // uuid = require('uuid'),
-      Models = require('./models');
+      Models = require('./models'),
+      passport = require('passport');
+      require('./passport')
 
 const app = express();
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
 const Films = Models.Film;
@@ -25,6 +29,8 @@ const Genres = Models.Genre;
 
 mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
 app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true}));
 
 const myLogger = (req, res, next) => {
   console.log(req.url);
@@ -56,9 +62,10 @@ app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', {root: __dirname});
 });
 
+
 //---------------------------------------------------FILMS
 //Get list of films
-app.get('/films', (req, res) => {
+app.get('/films', passport.authenticate('jwt', {session: false}), (req, res) => {
   Films.find()
   .then((films) => {
     res.status(201).json(films);
