@@ -8,7 +8,7 @@ require('./passport');
 
 let generateJWTToken = (user) => {
     return jwt.sign(user, jwtSecret, {
-        subject: user.Username, //This is the name you're encoding in the JWT --- Should this be 'Name' in my case?
+        subject: user.Username, //This is the name you're encoding in the JWT --- Should this be 'Name' in my case? (Tried with name, that didn't work either)
         expiresIn: '7d', //Sets expiry at 7 days
         algorithm: 'HS256' //This is the algorithm used to “sign” or encode the values of the JWT
     });

@@ -717,3 +717,4 @@
 ::1 - - [31/Jan/2023:21:17:03 +0000] "GET /users HTTP/1.1" 201 1591 "-" "PostmanRuntime/7.30.0"
 ::1 - - [31/Jan/2023:21:31:42 +0000] "GET /films HTTP/1.1" 401 - "-" "PostmanRuntime/7.30.0"
 ::1 - - [31/Jan/2023:21:33:26 +0000] "POST /users HTTP/1.1" 201 158 "-" "PostmanRuntime/7.30.0"
+::1 - - [31/Jan/2023:21:44:16 +0000] "GET /users HTTP/1.1" 201 1750 "-" "PostmanRuntime/7.30.0"
