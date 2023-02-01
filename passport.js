@@ -12,13 +12,13 @@ let Users = Models.User,
         usernameField: 'Name',
         passwordField: 'Password'
     }, (username, password, callback) => {
-        console.log(username + ' ' + password);
+        console.log(`${username} ${password}`);
         Users.findOne( { Name: username }, (error, user) => {
             if (error) {
                 console.log(error);
                 return callback(error);
             }
-            if (!user) {
+            if (!user.validatePassword(password)) {
                 console.log('Incorrect username');
                 return callback(null, false, {message: 'Incorrect username or password.'})
             }
