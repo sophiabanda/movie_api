@@ -2,15 +2,15 @@ const express = require('express'),
       //framework providing a broad set of features for the building of web and mobile apps
       morgan = require('morgan'),
       //middleware for loggin http requests
+      bodyParser = require('body-parser'),
+      //middleware for allowing access to req.body from within routes to use that data. used when more than just the URL is hit (body data being sent)
+      Models = require('./models'),
       fs = require('fs'),
       //used to write server activity to a log file
       path = require('path'),
       //helps to route traffic logs
-      bodyParser = require('body-parser'),
-      //middleware for allowing access to req.body from within routes to use that data. used when more than just the URL is hit (body data being sent)
-      // uuid = require('uuid'),
-      Models = require('./models'),
-      passport = require('passport');
+      passport = require('passport'),
+      cors = require('cors');
       require('./passport')
 
 const app = express();
@@ -18,19 +18,21 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {f
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cors());
+//The default setting of the above allows requests from all origins
 
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
+
 const Films = Models.Film;
 const Users = Models.User;
 const Directors = Models.Director;
 const Genres = Models.Genre;
 
-mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(morgan('common'));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 const myLogger = (req, res, next) => {
   console.log(req.url);
@@ -44,9 +46,20 @@ const requestTimeStamp = (req, res, next) => {
 
 app.use(myLogger);
 app.use(requestTimeStamp);
-app.use(morgan('common'));
-app.use(morgan('combined', {stream: accessLogStream}));
 
+//---------------------------------------------------CORS ALLOWANCES
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1) {
+      let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true)
+  }
+}))
 
 //---------------------------------------------------SITE
 //Homepage Welcome

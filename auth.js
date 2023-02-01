@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken'),
 
 require('./passport');
 
+
 let generateJWTToken = (user) => {
     return jwt.sign(user, jwtSecret, {
         subject: user.Name, //This is the name you're encoding in the JWT
@@ -30,7 +31,7 @@ module.exports = (router) => {
                     res.send(error);
                 }
                 let token = generateJWTToken(user.toJSON());
-                return res.json({ user, token} );
+                return res.json({ user, token });
             })
         }) (req, res);
     })
