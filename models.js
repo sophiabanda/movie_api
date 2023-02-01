@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+      bcrypt = require('bcrypt');
 
 let filmSchema = mongoose.Schema(
     {
@@ -24,6 +25,15 @@ let userSchema = mongoose.Schema(
     }
 );
 
+userSchema.statics.hashPassword = (password) => {
+    return bcrypt.hashSync(password, 10);
+};
+
+userSchema.methods.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
+//DO NOT USE ARROW FUNCTIONS WHEN DEFINING INSTANCE METHODS!! (.this)
+
 let genreSchema = mongoose.Schema(
     {
         Type: { type: String, required: true},
@@ -37,7 +47,7 @@ let directorSchema = mongoose.Schema(
         Bio: {type: String, required: true},
         BirthDate: Date
     }
-)
+);
 
 let Film = mongoose.model('Film', filmSchema);
 let User = mongoose.model('User', userSchema);
