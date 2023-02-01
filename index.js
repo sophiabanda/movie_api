@@ -151,6 +151,7 @@ app.get('/users', (req, res) => {
 
 //Create new User "Register"
 app.post('/users', (req, res) => {
+  let hashedPassword = Users.hashedPassword(req.body.Password);
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
       if (user) {
@@ -161,7 +162,7 @@ app.post('/users', (req, res) => {
             Name: req.body.Name,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
-            Password: req.body.Password
+            Password: hashedPassword
           })
           .then((user) =>{res.status(201).json(user) })
         .catch((error) => {
