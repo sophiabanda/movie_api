@@ -130,12 +130,12 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
         .catch((err) => {
           res.status(500).send(`Error: ${err}`);
         });
-    })
-    ////Second error catch for the films search
-    .catch((err) => {
-      res.status(500).send(`Error: ${err}`);
+      })
+      .catch((err) => {
+      //Second error catch for the films search
+       res.status(500).send(`Error: ${err}`);
     });
-});
+  });
 
 //---------------------------------------------------USERS
 // Return all Users
@@ -164,6 +164,7 @@ app.post('/users', [
   if(!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() })
   }
+
    let hashedPassword = Users.hashedPassword(req.body.Password);
    Users.findOne({ Name: req.body.Name })
    //Checks to see if user already exists
@@ -230,8 +231,14 @@ app.put('/users/:Name', [
   check('Email', 'Email does not appear to be valid').isEmail().normalizeEmail().notEmpty()
  ], (req, res) => {
 
+  let errors = validationResult(req);
 
-  Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
+  if(!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
+  }
+
+  Users.findOneAndUpdate( {Name: req.params.Name},
+  { $set:
     {
       Name: req.body.Name,
       Email: req.body.Email,
