@@ -25,9 +25,9 @@ app.use(cors());
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
 //local connection to mongo db
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
+// mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 //Hosted connection
 
 const Films = Models.Film;
@@ -142,7 +142,8 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
 
 //---------------------------------------------------USERS
 // Return all Users
-app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+// app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/users', (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -155,11 +156,19 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 
 //Create new User "Register"
 app.post('/users', [
- check('Name', 'Name is a required field and must be at least 5 letters').isLength({min:5}),
- check('Name', 'Name contains non-alphanumeric characters - not allowed').isAlphanumeric(),
- check('Password', 'Password is required').notEmpty(),
- check('Password', 'Must be at least 8 alphanumeric characters').isLength({min:8}),
- check('Email', 'Email does not appear to be valid').isEmail().normalizeEmail().notEmpty()
+ check('Name', 'Name is a required field and must be at least 5 letters')
+  .notEmpty()
+  .isLength({min:5})
+  .isAlphanumeric()
+  .bail(),
+ check('Password', 'Password is required and must be at least 8 alphanumeric characters')
+  .notEmpty()
+  .isLength({min:8})
+  .bail(),
+ check('Email', 'Email does not appear to be valid')
+  .normalizeEmail()
+  .isEmail()
+  .notEmpty()
 ], (req, res) => {
 
   let errors = validationResult(req);
