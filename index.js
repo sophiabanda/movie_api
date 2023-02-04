@@ -19,16 +19,14 @@ const { check, validationResult } = require('express-validator');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 //The default setting of the above allows requests from all origins
 
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
-//local connection to mongo db
-// mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
-//Hosted connection
+// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Films = Models.Film;
 const Users = Models.User;
@@ -51,19 +49,19 @@ const requestTimeStamp = (req, res, next) => {
 app.use(myLogger);
 app.use(requestTimeStamp);
 
-//---------------------------------------------------CORS ALLOWANCES WITH SPECIFICATIONS
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+//---------------------------------------------------CORS ALLOWANCES
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1) {
-//       let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
-//       return callback(new Error(message), false);
-//     }
-//     return callback(null, true)
-//   }
-// }))
+app.use(cors({
+  origin: (origin, callback) => {
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1) {
+      let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true)
+  }
+}))
 
 //---------------------------------------------------SITE
 //Homepage Welcome
@@ -133,17 +131,16 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
         .catch((err) => {
           res.status(500).send(`Error: ${err}`);
         });
-      })
-      .catch((err) => {
-      //Second error catch for the films search
-       res.status(500).send(`Error: ${err}`);
+    })
+    ////Second error catch for the films search
+    .catch((err) => {
+      res.status(500).send(`Error: ${err}`);
     });
-  });
+});
 
 //---------------------------------------------------USERS
 // Return all Users
-// app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
-app.get('/users', (req, res) => {
+app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -155,42 +152,20 @@ app.get('/users', (req, res) => {
 });
 
 //Create new User "Register"
-app.post('/users', [
- check('Name', 'Name is a required field and must be at least 5 letters')
-  .notEmpty()
-  .isLength({min:5})
-  .isAlphanumeric()
-  .bail(),
- check('Password', 'Password is required and must be at least 8 alphanumeric characters')
-  .notEmpty()
-  .isLength({min:8})
-  .bail(),
- check('Email', 'Email does not appear to be valid')
-  .normalizeEmail()
-  .isEmail()
-  .notEmpty()
-], (req, res) => {
-
-  let errors = validationResult(req);
-
-  if(!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
-  }
-
-   let hashedPassword = Users.hashedPassword(req.body.Password);
-   Users.findOne({ Name: req.body.Name })
-   //Checks to see if user already exists
-     .then((user) => {
-       if (user) {
-         return res.status(400).send(req.body.Name + ' already exists');
-       } else {
-         Users
-           .create({
-             Name: req.body.Name,
-             Email: req.body.Email,
-             Birthday: req.body.Birthday,
-             Password: hashedPassword
-           })
+app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+  let hashedPassword = Users.hashedPassword(req.body.Password);
+  Users.findOne({ Name: req.body.Name })
+    .then((user) => {
+      if (user) {
+        return res.status(400).send(req.body.Name + ' already exists');
+      } else {
+        Users
+          .create({
+            Name: req.body.Name,
+            Email: req.body.Email,
+            Birthday: req.body.Birthday,
+            Password: hashedPassword
+          })
           .then((user) =>{res.status(201).json(user) })
         .catch((error) => {
           console.error(error);
@@ -235,29 +210,8 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
 });
 
 //Update User Info
-app.put('/users/:Name', [
-  check('Name', 'Name is a required field and must be at least 5 alphanumeric cahracters')
-   .isLength({min:5})
-   .isAlphanumeric()
-   .bail(),
-  check('Password', 'Password is required and must be at least 8 alphanumeric characters')
-   .notEmpty()
-   .isLength({min:8})
-   .bail(),
-  check('Email', 'Email does not appear to be valid')
-   .normalizeEmail()
-   .isEmail()
-   .notEmpty()
- ], (req, res) => {
-
-  let errors = validationResult(req);
-
-  if(!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() })
-  }
-
-  Users.findOneAndUpdate( {Name: req.params.Name},
-  { $set:
+app.put('/users/:Name', passport.authenticate('jwt', {session: false}), (req, res) => {
+  Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
     {
       Name: req.body.Name,
       Email: req.body.Email,
@@ -270,7 +224,7 @@ app.put('/users/:Name', [
   (err, udpatedUser) => {
     if(err) {
       console.log(err);
-      res.status(500).send(`Error ${err}`);
+      res.status(500).send('Error ' + err);
     } else {
       res.json(udpatedUser);
     }
@@ -385,7 +339,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-const port = process.env.PORT || 8080
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Listening on port ${port}`);
+
+app.listen(8080, () => {
+  console.log('Your app is running on port 8080.');
 });
