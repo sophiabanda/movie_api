@@ -25,6 +25,7 @@ app.use(cors());
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
+const { format } = require('path');
 mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
 // mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -153,7 +154,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 
 //Create/Post new User "Register"
 app.post('/users',
-  check('Name', 'Name is a required field and must be at least 5 alphanumeric characters')
+  [check('Name', 'Name is a required field and must be at least 5 alphanumeric characters')
     .isLength( {min: 5} )
     .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
     .bail(),
@@ -162,7 +163,8 @@ app.post('/users',
     .bail(),
   check('Email', 'Please provide a valid email address')
     .normalizeEmail()
-    .isEmail(), (req, res) => {
+    .isEmail()
+  ], (req, res) => {
 
   let errors = validationResult(req);
 
@@ -171,6 +173,7 @@ app.post('/users',
   }
 
   let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
       if (user) {
@@ -227,12 +230,38 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
 });
 
 //Update User Info
-app.put('/users/:Name', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.put('/users/:Name', passport.authenticate('jwt', {session: false}),
+[check('Name', 'Name must be at least 5 alphanumeric characters')
+  .optional()
+  .isLength( {min: 5} )
+  .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
+  .bail(),
+check('Password', 'Password is required and must be at least 8 characters')
+  .optional()
+  .notEmpty()
+  .bail(),
+check('Email', 'Please provide a valid email address')
+  .optional()
+  .normalizeEmail()
+  .isEmail(),
+check('Date')
+  .optional()
+  .isDate(format)
+], (req, res) => {
+
+  let errors = validationResult(req);
+
+  if(!errors.isEmpty()) {
+    res.status(422).json({ errors: errors.array() });
+  }
+
+  let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
     {
       Name: req.body.Name,
       Email: req.body.Email,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Birthday: req.body.Birthday
     }
   },
