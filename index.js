@@ -236,11 +236,18 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
 
 //Update User Info
 app.put('/users/:Name', [
-  check('Name', 'Name is a required field and must be at least 5 letters').isLength({min:5}),
-  check('Name', 'Name contains non-alphanumeric characters - not allowed').isAlphanumeric(),
-  check('Password', 'Password is required').notEmpty(),
-  check('Password', 'Must be at least 8 alphanumeric characters').isLength({min:8}),
-  check('Email', 'Email does not appear to be valid').isEmail().normalizeEmail().notEmpty()
+  check('Name', 'Name is a required field and must be at least 5 alphanumeric cahracters')
+   .isLength({min:5})
+   .isAlphanumeric()
+   .bail(),
+  check('Password', 'Password is required and must be at least 8 alphanumeric characters')
+   .notEmpty()
+   .isLength({min:8})
+   .bail(),
+  check('Email', 'Email does not appear to be valid')
+   .normalizeEmail()
+   .isEmail()
+   .notEmpty()
  ], (req, res) => {
 
   let errors = validationResult(req);
