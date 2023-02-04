@@ -152,7 +152,24 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 });
 
 //Create/Post new User "Register"
-app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/users',
+  check('Name', 'Name is a required field and must be at least 5 alphanumeric characters')
+    .isLength( {min: 5} )
+    .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
+    .bail(),
+  check('Password', 'Password is required and must be at least 8 characters')
+    .notEmpty()
+    .bail(),
+  check('Email', 'Please provide a valid email address')
+    .normalizeEmail()
+    .isEmail(), (req, res) => {
+
+  let errors = validationResult(req);
+
+  if(!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
