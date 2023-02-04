@@ -139,7 +139,7 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
 
 //---------------------------------------------------USERS
 // Return all Users
-app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/users', (req, res) => {
   Users.find()
   .then((users) => {
     res.status(201).json(users);
@@ -151,7 +151,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 });
 
 //Create new User "Register"
-app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.post('/users', passport.authenticate('jwt', {session: false}),(req, res) => {
   let hashedPassword = Users.hashedPassword(req.body.Password);
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
@@ -163,7 +163,7 @@ app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) =>
             Name: req.body.Name,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
-            Password: hashedPassword
+            Password: req.body.Password
           })
           .then((user) =>{res.status(201).json(user) })
         .catch((error) => {
