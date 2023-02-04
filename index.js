@@ -250,7 +250,6 @@ check('Date')
 ], (req, res) => {
 
   let errors = validationResult(req);
-
   if(!errors.isEmpty()) {
     res.status(422).json({ errors: errors.array() });
   }
