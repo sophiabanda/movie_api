@@ -49,7 +49,7 @@ const requestTimeStamp = (req, res, next) => {
 app.use(myLogger);
 app.use(requestTimeStamp);
 
-//---------------------------------------------------CORS ALLOWANCES
+//---------------------------------------------------------------------------------------CORS ALLOWANCES
 // let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
 // app.use(cors({
@@ -63,7 +63,7 @@ app.use(requestTimeStamp);
 //   }
 // }))
 
-//---------------------------------------------------SITE
+//---------------------------------------------------SITE---------------------------------------------------SITE---------------------------------------------------SITE
 //Homepage Welcome
 app.get('/', (req, res) => {
   res.status(201).send('Welcome to my film database!')
@@ -78,7 +78,7 @@ app.get('/documentation', passport.authenticate('jwt', {session: false}), (req, 
 });
 
 
-//---------------------------------------------------FILMS
+//---------------------------------------------------FILMS---------------------------------------------------FILMS---------------------------------------------------FILMS
 //Get list of films
 app.get('/films', passport.authenticate('jwt', {session: false}), (req, res) => {
   Films.find()
@@ -138,7 +138,7 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
     });
 });
 
-//---------------------------------------------------USERS
+//---------------------------------------------------USERS---------------------------------------------------USERS---------------------------------------------------USERS
 // Return all Users
 app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.find()
