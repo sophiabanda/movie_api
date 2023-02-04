@@ -25,13 +25,13 @@ let userSchema = mongoose.Schema(
     }
 );
 
-userSchema.statics.hashPassword = (password) => {
+  userSchema.statics.hashPassword = (password) => {
     return bcrypt.hashSync(password, 10);
-};
+  };
 
-userSchema.methods.validatePassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-};
+  userSchema.methods.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.Password);
+  };
 //DO NOT USE ARROW FUNCTIONS WHEN DEFINING INSTANCE METHODS!! (.this)
 
 let genreSchema = mongoose.Schema(

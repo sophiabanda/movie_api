@@ -19,14 +19,14 @@ const { check, validationResult } = require('express-validator');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors());
+app.use(cors());
 //The default setting of the above allows requests from all origins
 
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Films = Models.Film;
 const Users = Models.User;
@@ -50,18 +50,18 @@ app.use(myLogger);
 app.use(requestTimeStamp);
 
 //---------------------------------------------------CORS ALLOWANCES
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1) {
-      let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
-      return callback(new Error(message), false);
-    }
-    return callback(null, true)
-  }
-}))
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if(!origin) return callback(null, true);
+//     if(allowedOrigins.indexOf(origin) === -1) {
+//       let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
+//       return callback(new Error(message), false);
+//     }
+//     return callback(null, true)
+//   }
+// }))
 
 //---------------------------------------------------SITE
 //Homepage Welcome
@@ -151,9 +151,9 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
   });
 });
 
-//Create new User "Register"
+//Create/Post new User "Register"
 app.post('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
-  let hashedPassword = Users.hashedPassword(req.body.Password);
+  let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Name: req.body.Name })
     .then((user) => {
       if (user) {
@@ -301,7 +301,7 @@ app.delete('/users/:Username/films/:filmId', passport.authenticate('jwt', {sessi
 
 
 //Delete a User by Username "De-Register"
-app.delete('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', {session: false}),(req, res) => {
   Users.findOneAndRemove({ Name: req.params.Username })
     .then((user) => {
       if (!user) {
