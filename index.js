@@ -197,7 +197,54 @@ app.post('/users',
       console.error(error);
       res.status(500).send('Error: ' + error);
     });
-});
+  });
+
+  //Update User Info
+  app.put('/users/:Name', passport.authenticate('jwt', {session: false}),
+  [check('Name', 'Name must be at least 5 alphanumeric characters')
+    .optional()
+    .isLength( {min: 5} )
+    .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
+    .bail(),
+  check('Password', 'Password is required and must be at least 8 characters')
+    .optional()
+    .notEmpty()
+    .bail(),
+  check('Email', 'Please provide a valid email address')
+    .optional()
+    .normalizeEmail()
+    .isEmail(),
+  check('Date')
+    .optional()
+    .isDate(format)
+  ], (req, res) => {
+
+    let errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
+
+    Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
+      {
+        Name: req.body.Name,
+        Email: req.body.Email,
+        Password: hashedPassword,
+        Birthday: req.body.Birthday
+      }
+    },
+    //ensures the new doc is returned:
+    { new: true },
+    (err, udpatedUser) => {
+      if(err) {
+        console.log(err);
+        res.status(500).send('Error ' + err);
+      } else {
+        res.json(udpatedUser);
+      }
+    });
+  });
 
 // Find User by Name
 app.get('/users/:Name', passport.authenticate('jwt', {session: false}), (req, res) => {
@@ -229,52 +276,6 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
   });
 });
 
-//Update User Info
-app.put('/users/:Name', passport.authenticate('jwt', {session: false}),
-[check('Name', 'Name must be at least 5 alphanumeric characters')
-  .optional()
-  .isLength( {min: 5} )
-  .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
-  .bail(),
-check('Password', 'Password is required and must be at least 8 characters')
-  .optional()
-  .notEmpty()
-  .bail(),
-check('Email', 'Please provide a valid email address')
-  .optional()
-  .normalizeEmail()
-  .isEmail(),
-check('Date')
-  .optional()
-  .isDate(format)
-], (req, res) => {
-
-  let errors = validationResult(req);
-  if(!errors.isEmpty()) {
-    res.status(422).json({ errors: errors.array() });
-  }
-
-  let hashedPassword = Users.hashPassword(req.body.Password);
-
-  Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
-    {
-      Name: req.body.Name,
-      Email: req.body.Email,
-      Password: hashedPassword,
-      Birthday: req.body.Birthday
-    }
-  },
-  //ensures the new doc is returned:
-  { new: true },
-  (err, udpatedUser) => {
-    if(err) {
-      console.log(err);
-      res.status(500).send('Error ' + err);
-    } else {
-      res.json(udpatedUser);
-    }
-  });
-});
 
 
 //Add a Favorite Film to User's Favorites by name
