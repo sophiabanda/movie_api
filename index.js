@@ -25,8 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const Films = Models.Film;
 const Users = Models.User;
