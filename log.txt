@@ -895,3 +895,6 @@
 ::1 - - [05/Feb/2023:21:09:22 +0000] "PUT /users/Trey%20Allen%20Simpson HTTP/1.1" 200 248 "-" "PostmanRuntime/7.30.0"
 ::1 - - [05/Feb/2023:21:10:06 +0000] "PUT /users/Trey%20Simpson HTTP/1.1" 200 248 "-" "PostmanRuntime/7.30.0"
 ::1 - - [05/Feb/2023:21:10:44 +0000] "PUT /users/Trey%20Simpson HTTP/1.1" 500 16 "-" "PostmanRuntime/7.30.0"
+::1 - - [05/Feb/2023:21:14:38 +0000] "PUT /users/Trey%20Simpson HTTP/1.1" 200 248 "-" "PostmanRuntime/7.30.0"
+::1 - - [05/Feb/2023:21:17:56 +0000] "PUT /users/Trey%20Simpson HTTP/1.1" 200 248 "-" "PostmanRuntime/7.30.0"
+::1 - - [05/Feb/2023:21:18:54 +0000] "GET /users/Trey%20Simpson HTTP/1.1" 200 248 "-" "PostmanRuntime/7.30.0"

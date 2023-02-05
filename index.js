@@ -200,13 +200,13 @@ app.post('/users',
   });
 
   //Update User Info
-  app.put('/users/:Name', passport.authenticate('jwt', {session: false}),
+  app.put('/users/:Name', passport.authenticate('jwt', {session: false}), //Is it safe to have access to change all those fields with just url and token access?
   [check('Name', 'Name must be at least 5 alphanumeric characters')
     .optional( {nullable: true} ) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
     .isLength( {min: 5} )
     .isAlphanumeric('en-US', {ignore: ' '}) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
     .bail(),
-  check('Password', 'Password is required and must be at least 8 characters')
+  check('Password', 'Password is required and must be at least 8 characters') //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
     .optional( {nullable: true} )
     .notEmpty()
     .bail(),
