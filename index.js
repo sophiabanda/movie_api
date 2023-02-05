@@ -199,7 +199,7 @@ app.post('/users',
     });
   });
 
-  //Update User Info
+  //Update User Info ------ Test all of these variables again to make sure you have correct docs
   app.put('/users/:Name', passport.authenticate('jwt', {session: false}), //Is it safe to have access to change all those fields with just url and token access?
   [check('Name', 'Name must be at least 5 alphanumeric characters')
     .optional( {nullable: true} ) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
