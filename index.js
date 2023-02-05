@@ -202,20 +202,20 @@ app.post('/users',
   //Update User Info
   app.put('/users/:Name', passport.authenticate('jwt', {session: false}),
   [check('Name', 'Name must be at least 5 alphanumeric characters')
-    .optional()
+    .optional( {nullable: true} ) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
     .isLength( {min: 5} )
-    .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
+    .isAlphanumeric('en-US', {ignore: ' '}) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
     .bail(),
   check('Password', 'Password is required and must be at least 8 characters')
-    .optional()
+    .optional( {nullable: true} )
     .notEmpty()
     .bail(),
   check('Email', 'Please provide a valid email address')
-    .optional()
+    .optional( {nullable: true} )
     .normalizeEmail()
     .isEmail(),
   check('Date')
-    .optional()
+    .optional( {nullable: true} )
     .isDate(format)
   ], (req, res) => {
 

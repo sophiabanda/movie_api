@@ -19,14 +19,14 @@ let userSchema = mongoose.Schema(
         Password: {type: String, required: true},
         Birthday: Date,
         Favorites: {
-            Film: { type: mongoose.Types.ObjectId, ref: 'Film'},
-            Title: { type: String, ref: 'Film' }
+            Film: { type: mongoose.Types.ObjectId, ref: 'Film'}, //This property will add a film by id from the films array.
+            Title: { type: String, ref: 'Film' } //Addint this additional property creates the ability to add a film by title.
         }
     }
 );
 
   userSchema.statics.hashPassword = function(password) {
-    return bcrypt.hashSync(password, 10);
+    return bcrypt.hashSync(password, 10); //I'm curious to know what the 10 means in hashing, and to learn mnore about salt.
   };
 
   userSchema.methods.validatePassword = function(password) {
