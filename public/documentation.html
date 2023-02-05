@@ -82,32 +82,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Find user by User Name</td>
-                <td>/users/[User Name]</td>
-                <td>GET</td>
-                <td>None</td>
-                <td>A JSON object containing info on specified user.</td>
-            </tr>
-            <tr>
-                <td>Find user by User id #</td>
-                <td>/users/id/[id #]</td>
-                <td>GET</td>
-                <td>None</td>
-                <td>A JSON object containing info on specified user.</td>
-            </tr>
-            <tr>
                 <td>Update user information</td>
                 <td>/users</td>
                 <td>PUT</td>
-                <td>The field you wish to update. Example:<br>
+                <td>Minimum of Name and Password in body, in addition to other updated fields. Example:<br>
                     <br>
                     <br>
                     {<br>
                         <br>
                         "Name": "Updated Name" <br>
+                        "Password": "Updated Password" <br>
                         <br>
                     }
-
                 </td>
                 <td>
                     {<br>
@@ -123,6 +109,20 @@
                 </td>
             </tr>
             <tr>
+            <tr>
+                <td>Find user by User Name</td>
+                <td>/users/[User Name]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing info on specified user.</td>
+            </tr>
+            <tr>
+                <td>Find user by User id #</td>
+                <td>/users/id/[id #]</td>
+                <td>GET</td>
+                <td>None</td>
+                <td>A JSON object containing info on specified user.</td>
+            </tr>
                 <td>De-register user by name</td>
                 <td>/users/[User Name]</td>
                 <td>DELETE</td>
