@@ -214,7 +214,7 @@ app.post('/users',
     .optional( {nullable: true} )
     .normalizeEmail()
     .isEmail(),
-  check('Date')
+  check('Birthday')
     .optional( {nullable: true} )
     .isDate(format)
   ], (req, res) => {
