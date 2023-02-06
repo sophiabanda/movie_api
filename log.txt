@@ -913,3 +913,6 @@
 ::1 - - [06/Feb/2023:15:17:04 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 200 275 "-" "PostmanRuntime/7.30.0"
 ::1 - - [06/Feb/2023:15:37:10 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 422 151 "-" "PostmanRuntime/7.30.0"
 ::1 - - [06/Feb/2023:15:40:05 +0000] "POST /users/ HTTP/1.1" 422 175 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:18:17:29 +0000] "GET / HTTP/1.1" 201 28 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:18:17:37 +0000] "GET /users HTTP/1.1" 401 - "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:18:17:40 +0000] "GET /films HTTP/1.1" 401 - "-" "PostmanRuntime/7.30.0"
