@@ -275,8 +275,6 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
   });
 });
 
-
-
 //Add a Favorite Film to User's Favorites by name
 app.post('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
