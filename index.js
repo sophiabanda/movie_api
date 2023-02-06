@@ -80,7 +80,7 @@ app.get('/documentation', passport.authenticate('jwt', {session: false}), (req, 
 
 
 //---------------------------------------------------FILMS---------------------------------------------------FILMS---------------------------------------------------FILMS
-//Get list of films
+//GET list of films
 app.get('/films', passport.authenticate('jwt', {session: false}), (req, res) => {
   Films.find()
   .then((films) => {
@@ -92,7 +92,7 @@ app.get('/films', passport.authenticate('jwt', {session: false}), (req, res) => 
   });
 });
 
-//Get Film by Title
+//GET Film by Title
 app.get('/films/:Title', passport.authenticate('jwt', {session: false}), (req, res) => {
   Films.findOne( {Title: req.params.Title} )
   .then((film) => {
@@ -103,7 +103,7 @@ app.get('/films/:Title', passport.authenticate('jwt', {session: false}), (req, r
   });
 });
 
-//Get film by Genre type
+//GET film by Genre type
 app.get('/films/genre/:genreType', passport.authenticate('jwt', {session: false}), (req, res) => {
   //First retrieve the Genre doc with the matching Type:
   Genres.findOne({ Type: req.params.genreType })
@@ -119,7 +119,7 @@ app.get('/films/genre/:genreType', passport.authenticate('jwt', {session: false}
     })
   });
 
-//Return all films by a particlar Director
+//GET/ Return all films by a particlar Director
 app.get('/films/director/:directorName', passport.authenticate('jwt', {session: false}), (req, res) => {
   // First retrieve the Director doc with the matching name:
   Directors.findOne({ Name: req.params.directorName })
@@ -140,7 +140,7 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
 });
 
 //---------------------------------------------------USERS---------------------------------------------------USERS---------------------------------------------------USERS
-// Return all Users
+//GET/ Return all Users
 app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.find()
   .then((users) => {
@@ -152,7 +152,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
   });
 });
 
-//Create/Post new User "Register"
+//CREATE/Post new User "Register"
 app.post('/users',
   [check('Name', 'Name is a required field and must be at least 5 alphanumeric characters')
     .isLength( {min: 5} )
@@ -199,7 +199,7 @@ app.post('/users',
     });
   });
 
-  //Update User Info ------ Test all of these variables again to make sure you have correct docs
+  //UPDATE User Info ------ Test all of these variables again to make sure you have correct docs
   app.put('/users/:Name', passport.authenticate('jwt', {session: false}), //Is it safe to have access to change all those fields with just url and token access?
   [check('Name', 'Name must be at least 5 alphanumeric characters')
     .optional( {nullable: true} ) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
@@ -234,8 +234,8 @@ app.post('/users',
         Birthday: req.body.Birthday
       }
     },
-    //ensures the new doc is returned:
-    { new: true },
+
+    { new: true }, //Ensures the new doc is returned
     (err, udpatedUser) => {
       if(err) {
         console.log(err);
