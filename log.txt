@@ -908,3 +908,8 @@
 ::1 - - [06/Feb/2023:15:10:58 +0000] "GET /users/ HTTP/1.1" 201 699 "-" "PostmanRuntime/7.30.0"
 ::1 - - [06/Feb/2023:15:11:42 +0000] "PUT /users/Tulo%20Banda%20III HTTP/1.1" 200 170 "-" "PostmanRuntime/7.30.0"
 ::1 - - [06/Feb/2023:15:13:05 +0000] "PUT /users/Tulo%20Banda%20III HTTP/1.1" 200 208 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:15:15:57 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 500 16 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:15:16:41 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 500 114 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:15:17:04 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 200 275 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:15:37:10 +0000] "PUT /users/Sophia%20M%20Banda HTTP/1.1" 422 151 "-" "PostmanRuntime/7.30.0"
+::1 - - [06/Feb/2023:15:40:05 +0000] "POST /users/ HTTP/1.1" 422 175 "-" "PostmanRuntime/7.30.0"

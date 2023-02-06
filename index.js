@@ -207,7 +207,6 @@ app.post('/users',
     .isAlphanumeric('en-US', {ignore: ' '}) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
     .bail(),
   check('Password', 'Password is required and must be at least 8 characters') //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
-    .optional( {nullable: true} )
     .notEmpty()
     .bail(),
   check('Email', 'Please provide a valid email address')
