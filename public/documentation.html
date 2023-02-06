@@ -85,12 +85,20 @@
                 <td>Update user information</td>
                 <td>/users</td>
                 <td>PUT</td>
-                <td>Minimum of Name and Password in body, in addition to other updated fields. Example:<br>
+                <td>Must include password in body in addition to requested update/s. You may also update password alone. Example:<br>
                     <br>
                     <br>
                     {<br>
                         <br>
-                        "Name": "Updated Name" <br>
+                        "Password": "Updated Password" <br>
+                        "[field to update]": "[update]" <br>
+                        <br>
+                    }<br>
+                    <br>
+                    Or,<br>
+                    <br>
+                    {<br>
+                        <br>
                         "Password": "Updated Password" <br>
                         <br>
                     }
