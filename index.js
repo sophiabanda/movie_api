@@ -199,7 +199,7 @@ app.post('/users',
     });
   });
 
-  //UPDATE User Info ------ Test all of these variables again to make sure you have correct docs
+  //UPDATE User Info ------
   app.put('/users/:Name', passport.authenticate('jwt', {session: false}), //Is it safe to have access to change all those fields with just url and token access?
   [check('Name', 'Name must be at least 5 alphanumeric characters')
     .optional( {nullable: true} ) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
@@ -207,7 +207,7 @@ app.post('/users',
     .isAlphanumeric('en-US', {ignore: ' '}) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
     .bail(),
   check('Password', 'Password is required and must be at least 8 characters') //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
-    .notEmpty()
+    .notEmpty() //If remove and replace with optinal will work? Look for "ignore if empty"
     .bail(),
   check('Email', 'Please provide a valid email address')
     .optional( {nullable: true} )
@@ -329,16 +329,15 @@ app.delete('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {se
 app.delete('/users/:Username/films/:filmId', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $pull: { Favorites: req.params.filmId } },
-    { new: true },
-    (err, udpatedUser) => {
-      if(err) {
-        console.log(err);
+    { new: true }
+    .then((udpatedUser) => {
+      console.log(`Added if new film.`);
+      res.json(udpatedUser);
+    })
+    .catch((err) => {
+      console.log(err);
         res.status(500).send('Error ' + err)
-      } else {
-        console.log('Added if new film.')
-        res.json(udpatedUser);
-      }
-    }
+    })
     );
 });
 
