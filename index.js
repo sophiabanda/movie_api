@@ -186,7 +186,7 @@ app.post('/users',
             Birthday: req.body.Birthday,
             Password: hashedPassword
           })
-          .then((user) =>{res.status(201).json(user) })
+          .then((user) => {res.status(201).json(user) })
         .catch((error) => {
           console.error(error);
           res.status(500).send('Error: ' + error);
