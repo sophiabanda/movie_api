@@ -26,8 +26,8 @@ let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
 const { format } = require('path');
-// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Films = Models.Film;
 const Users = Models.User;
@@ -279,16 +279,14 @@ app.get('/users/id/:id', passport.authenticate('jwt', {session: false}), (req, r
 app.post('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $addToSet: { Favorites: req.params.filmTitle } },
-    { new: true },
-    (err, udpatedUser) => {
-      if(err) {
-        console.log(err);
-        res.status(500).send('Error ' + err)
-      } else {
-        console.log('Added only if film does not already exist.')
-        res.status(200).json(udpatedUser);
-      }
-    }
+    { new: true }
+    .then((updatedUser) =>{
+      console.log(`Added only if film does not already exist.`)
+      res.status(200).json(updatedUser)
+    })
+    .catch((err) => {
+      res.status(500).send(`Error ${err}`)
+    })
     );
 });
 
@@ -296,16 +294,14 @@ app.post('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {sess
 app.post('/users/:Username/films/:filmId', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $addToSet: { Favorites: req.params.filmId } },
-    { new: true },
-    (err, udpatedUser) => {
-      if(err) {
-        console.log(err);
-        res.status(500).send('Error ' + err)
-      } else {
-        console.log('Added only if film does not already exist.')
-        res.status(200).json(udpatedUser);
-      }
-    }
+    { new: true }
+    .then((updatedUser) =>{
+      console.log(`Added only if film does not already exist.`)
+      res.status(200).json(updatedUser)
+    })
+    .catch((err) => {
+      res.status(500).send(`Error ${err}`)
+    })
     );
 });
 
@@ -313,15 +309,14 @@ app.post('/users/:Username/films/:filmId', passport.authenticate('jwt', {session
 app.delete('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {session: false}), (req, res) => {
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $pull: { Favorites: req.params.filmTitle } },
-    { new: true },
-    (err, udpatedUser) => {
-      if(err) {
-        console.log(err);
-        res.status(500).send('Error ' + err)
-      } else {
-        res.json(udpatedUser);
-      }
-    }
+    { new: true }
+    .then((udpatedUser) => {
+      res.status(200).json(udpatedUser)
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(`'Error ${err}`)
+    })
     );
 });
 
@@ -336,7 +331,7 @@ app.delete('/users/:Username/films/:filmId', passport.authenticate('jwt', {sessi
     })
     .catch((err) => {
       console.log(err);
-        res.status(500).send('Error ' + err)
+        res.status(500).send(`Error ${err}`)
     })
     );
 });
@@ -347,9 +342,9 @@ app.delete('/users/:Username', passport.authenticate('jwt', {session: false}),(r
   Users.findOneAndRemove({ Name: req.params.Username })
     .then((user) => {
       if (!user) {
-        res.status(400).send(req.params.Username + ' was not found');
+        res.status(400).send(`${req.params.Username} was not found`);
       } else {
-        res.status(200).send(req.params.Username + ' was deleted.');
+        res.status(200).send(`${req.params.Username} was deleted.`);
       }
     })
     .catch((err) => {
