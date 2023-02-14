@@ -81,7 +81,7 @@ app.get('/documentation', passport.authenticate('jwt', {session: false}), (req, 
 
 //---------------------------------------------------FILMS---------------------------------------------------FILMS---------------------------------------------------FILMS
 //GET list of films
-app.get('/films', passport.authenticate('jwt', {session: false}), (req, res) => {
+app.get('/films', (req, res) => {
   Films.find()
   .then((films) => {
     res.status(201).json(films);
