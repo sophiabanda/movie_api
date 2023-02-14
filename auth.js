@@ -1,4 +1,4 @@
-const jwtSecret = 'your_jwt_secret';
+const jwtSecret = 'TOKEN_';
 //This has to be the same key used in the JWTStrategy
 
 const jwt = require('jsonwebtoken'),
