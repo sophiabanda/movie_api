@@ -944,3 +944,4 @@
 127.0.0.1 - - [08/Feb/2023:19:28:31 +0000] "POST /users/Trey%20Simpson/films/Whiplash HTTP/1.1" 200 259 "-" "PostmanRuntime/7.30.0"
 127.0.0.1 - - [08/Feb/2023:19:28:46 +0000] "GET /films HTTP/1.1" 201 8256 "-" "PostmanRuntime/7.30.0"
 127.0.0.1 - - [08/Feb/2023:19:29:00 +0000] "POST /users/Sophia%20Banda/films/63d1bf190a55cd1085fd785a HTTP/1.1" 200 225 "-" "PostmanRuntime/7.30.0"
+127.0.0.1 - - [15/Feb/2023:00:59:59 +0000] "GET /films HTTP/1.1" 201 22332 "-" "PostmanRuntime/7.31.0"

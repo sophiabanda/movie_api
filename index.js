@@ -26,8 +26,8 @@ let auth = require('./auth')(app);
 
 const mongoose = require('mongoose');
 const { format } = require('path');
-// mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect( process.env.ATLASDB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/sophiaFilms', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect( process.env.ATLASDB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Films = Models.Film;
 const Users = Models.User;
@@ -83,6 +83,8 @@ app.get('/documentation', passport.authenticate('jwt', {session: false}), (req, 
 //GET list of films
 app.get('/films', (req, res) => {
   Films.find()
+  .populate('Genres')
+  .populate('Director')
   .then((films) => {
     res.status(201).json(films);
   })
