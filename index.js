@@ -83,6 +83,7 @@ app.get('/documentation', passport.authenticate('jwt', {session: false}), (req, 
 //GET list of films
 app.get('/films', (req, res) => {
   Films.find()
+  //.populate pulls in the data from the other models in addition to their id
   .populate('Genres')
   .populate('Director')
   .then((films) => {
@@ -95,8 +96,10 @@ app.get('/films', (req, res) => {
 });
 
 //GET Film by Title
-app.get('/films/:Title', passport.authenticate('jwt', {session: false}), (req, res) => {
-  Films.findOne( {Title: req.params.Title} )
+app.get('/films/:Title',passport.authenticate('jwt', {session: false}), (req, res) => {
+  Films.findOne({Title: req.params.Title})
+  .populate('Director')
+  .populate('Genres')
   .then((film) => {
     res.status(201).json(film)
   })
@@ -112,12 +115,17 @@ app.get('/films/genre/:genreType', passport.authenticate('jwt', {session: false}
   //Then retrrieve Films with matching genre id:
    .then((genre) => {
     Films.find({ Genres: genre._id })
+    .populate('Director')
+    .populate('Genres')
     .then((films) => {
       res.status(200).json(films)
     })
     .catch((err) => {
-      res.status(500).send('Error ' + err);
+      res.status(500).send(`Error: ${err}`);
      });
+    })
+    .catch((err) => {
+     res.status(500).send(`Error: ${err}`)
     })
   });
 
@@ -128,6 +136,7 @@ app.get('/films/director/:directorName', passport.authenticate('jwt', {session: 
     .then((director) => {
       // Then retrieve all Films with matching director id:
       Films.find({ Director: director._id })
+      .populate('Director')
         .then((films) => {
           res.status(200).json(films);
         })
