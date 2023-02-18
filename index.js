@@ -167,7 +167,7 @@ app.get('/users', passport.authenticate('jwt', {session: false}), (req, res) => 
 //CREATE/Post new User "Register"
 app.post('/users',
   [check('Name', 'Name is a required field and must be at least 5 alphanumeric characters')
-    .isLength( {min: 5} )
+    .isLength( {min: 3} )
     .isAlphanumeric('en-US', {ignore: ' '}) //added parameter that makes it ok to have a space for First Last instead of FirstLast
     .bail(),
   check('Password', 'Password is required and must be at least 8 characters')
