@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'),
       //framework providing a broad set of features for the building of web and mobile apps
       morgan = require('morgan'),
@@ -236,7 +237,7 @@ app.post('/users',
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-
+    //req params traditionally lowercase
     Users.findOneAndUpdate( {Name: req.params.Name}, { $set:
       {
         Name: req.body.Name,
