@@ -106,7 +106,7 @@ app.get('/films/:Title',passport.authenticate('jwt', {session: false}), (req, re
     res.status(201).json(film)
   })
   .catch((err) => {
-    res.status(500).send('Error ' + err);
+    res.status(500).send(`Error: ${err}`);
   });
 });
 
