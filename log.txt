@@ -983,3 +983,8 @@
 127.0.0.1 - - [17/Feb/2023:17:10:21 +0000] "GET /users HTTP/1.1" 401 - "-" "PostmanRuntime/7.31.0"
 127.0.0.1 - - [17/Feb/2023:17:12:09 +0000] "POST /users HTTP/1.1" 201 169 "-" "PostmanRuntime/7.31.0"
 127.0.0.1 - - [17/Feb/2023:17:12:44 +0000] "GET /users HTTP/1.1" 201 1224 "-" "PostmanRuntime/7.31.0"
+127.0.0.1 - - [03/Mar/2023:22:04:51 +0000] "GET /films HTTP/1.1" 201 33969 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [03/Mar/2023:22:05:04 +0000] "GET /users HTTP/1.1" 401 - "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [03/Mar/2023:22:06:30 +0000] "GET /users HTTP/1.1" 201 1018 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [03/Mar/2023:22:07:18 +0000] "PUT /users/Sophia%20Banda HTTP/1.1" 200 208 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [03/Mar/2023:22:08:00 +0000] "PUT /users/63f01eb4bd1281f82f6c01a6 HTTP/1.1" 200 206 "-" "PostmanRuntime/7.31.1"
