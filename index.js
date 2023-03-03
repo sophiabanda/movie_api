@@ -248,12 +248,12 @@ app.post('/users',
     },
 
     { new: true }, //Ensures the new doc is returned
-    (err, udpatedUser) => {
+    (err, updatedUser) => {
       if(err) {
         console.log(err);
         res.status(500).send('Error ' + err);
       } else {
-        res.json(udpatedUser);
+        res.json(updatedUser);
       }
     });
   });
@@ -324,8 +324,8 @@ app.delete('/users/:Username/films/:filmTitle', passport.authenticate('jwt', {se
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $pull: { Favorites: req.params.filmTitle } },
     { new: true })
-    .then((udpatedUser) => {
-      res.status(200).json(udpatedUser)
+    .then((updatedUser) => {
+      res.status(200).json(updatedUser)
     })
     .catch((err) => {
       console.log(err);
@@ -338,9 +338,9 @@ app.delete('/users/:Username/films/:filmId', passport.authenticate('jwt', {sessi
   Users.findOneAndUpdate( { Name: req.params.Username },
     { $pull: { Favorites: req.params.filmId } },
     { new: true })
-    .then((udpatedUser) => {
+    .then((updatedUser) => {
       console.log(`Added if new film.`);
-      res.json(udpatedUser);
+      res.json(updatedUser);
     })
     .catch((err) => {
       console.log(err);
