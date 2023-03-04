@@ -114,7 +114,7 @@ app.get('/films/:Title',passport.authenticate('jwt', {session: false}), (req, re
 app.get('/films/genre/:genreType', passport.authenticate('jwt', {session: false}), (req, res) => {
   //First retrieve the Genre doc with the matching Type:
   Genres.findOne({ Type: req.params.genreType })
-  //Then retrrieve Films with matching genre id:
+  //Then retrieve Films with matching genre id:
    .then((genre) => {
     Films.find({ Genres: genre._id })
     .populate('Director')
