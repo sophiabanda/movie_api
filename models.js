@@ -26,7 +26,7 @@ let userSchema = mongoose.Schema(
 );
 
   userSchema.statics.hashPassword = function(password) {
-    return bcrypt.hashSync(password, 10); //I'm curious to know what the 10 means in hashing, and to learn mnore about salt.
+    return bcrypt.hashSync(password, 10);
   };
 
   userSchema.methods.validatePassword = function(password) {

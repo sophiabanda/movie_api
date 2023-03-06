@@ -219,9 +219,9 @@ app.post('/users',
     .isLength( {min: 5} )
     .isAlphanumeric('en-US', {ignore: ' '}) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
     .bail(),
-  // check('Password', 'Password is required and must be at least 8 characters') //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
-  //   .optional( {nullable: true} ) //If remove and replace with optinal will work? Look for "ignore if empty"
-  //   .bail(),
+  check('Password', 'Password is required and must be at least 8 characters') //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
+    .optional( {nullable: true} ) //If remove and replace with optinal will work? Look for "ignore if empty"
+    .bail(),
   check('Email', 'Please provide a valid email address')
     .optional( {nullable: true} )
     .normalizeEmail()
@@ -236,13 +236,13 @@ app.post('/users',
       res.status(422).json({ errors: errors.array() });
     }
 
-    // let hashedPassword = Users.hashPassword(req.body.Password);
+    let hashedPassword = Users.hashPassword(req.body.Password);
     //req params traditionally lowercase
     Users.findOneAndUpdate( {_id: req.params.id}, { $set:
       {
         Name: req.body.Name,
         Email: req.body.Email,
-        // Password: hashedPassword,
+        Password: hashedPassword,
         Birthday: req.body.Birthday
       }
     },
