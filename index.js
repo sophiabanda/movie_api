@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express'),
       //framework providing a broad set of features for the building of web and mobile apps
       morgan = require('morgan'),
-      //middleware for loggin http requests
+      //middleware for logging http requests
       bodyParser = require('body-parser'),
       //middleware for allowing access to req.body from within routes to use that data. used when more than just the URL is hit (body data being sent)
       Models = require('./models'),
