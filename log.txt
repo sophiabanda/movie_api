@@ -999,3 +999,8 @@
 127.0.0.1 - - [04/Mar/2023:19:25:49 +0000] "PUT /users/id/63deb8ba4ccf12eee8a17c40 HTTP/1.1" 200 259 "-" "PostmanRuntime/7.31.1"
 127.0.0.1 - - [04/Mar/2023:19:27:27 +0000] "GET /users/ HTTP/1.1" 201 1224 "-" "PostmanRuntime/7.31.1"
 127.0.0.1 - - [04/Mar/2023:19:28:05 +0000] "PUT /users/id/63e3f367412d2f2cb1337bdd HTTP/1.1" 200 227 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [07/Mar/2023:15:12:35 +0000] "GET /users HTTP/1.1" 401 - "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [07/Mar/2023:15:12:41 +0000] "GET /films HTTP/1.1" 201 22332 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [07/Mar/2023:15:14:16 +0000] "POST /users HTTP/1.1" 201 168 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [07/Mar/2023:15:14:45 +0000] "GET /users HTTP/1.1" 201 1395 "-" "PostmanRuntime/7.31.1"
+127.0.0.1 - - [07/Mar/2023:15:15:25 +0000] "POST /users HTTP/1.1" 400 27 "-" "PostmanRuntime/7.31.1"
