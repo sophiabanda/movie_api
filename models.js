@@ -1,61 +1,54 @@
-const mongoose = require('mongoose'),
-      bcrypt = require('bcrypt');
+const mongoose = require("mongoose"),
+  bcrypt = require("bcrypt");
 
-let filmSchema = mongoose.Schema(
-    {
-        Title: {type: String, required: true},
-        Summary: {type: String, required: true},
-        Genres: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Genre', required: true }],
-        Director: { type: mongoose.Types.ObjectId, ref: 'Director', required: true},
-        filmPosterImg: String,
-        Featured: Boolean
-    }
-);
+let filmSchema = mongoose.Schema({
+  title: { type: String, required: true },
+  summary: { type: String, required: true },
+  genres: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Genre", required: true },
+  ],
+  director: { type: mongoose.Types.ObjectId, ref: "Director", required: true },
+  filmPosterImg: String,
+  featured: Boolean,
+});
 
-let userSchema = mongoose.Schema(
-    {
-        Name: {type: String, required: true},
-        Email: {type: String, required: true},
-        Password: {type: String, required: true},
-        Birthday: Date,
-        Favorites: {
-            Film: { type: mongoose.Types.ObjectId, ref: 'Film'}, //This property will add a film by id from the films array.
-            Title: { type: String, ref: 'Film' } //Addint this additional property creates the ability to add a film by title.
-        }
-    }
-);
+let userSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  birthday: Date,
+  favorites: {
+    film: { type: mongoose.Types.ObjectId, ref: "Film" }, //This property will add a film by id from the films array.
+    title: { type: String, ref: "Film" }, //Addint this additional property creates the ability to add a film by title.
+  },
+});
 
-  userSchema.statics.hashPassword = function(password) {
-    return bcrypt.hashSync(password, 10);
-  };
+userSchema.statics.hashPassword = function (password) {
+  return bcrypt.hashSync(password, 10);
+};
 
-  userSchema.methods.validatePassword = function(password) {
-    return bcrypt.compareSync(password, this.Password);
-  };
+userSchema.methods.validatePassword = function (password) {
+  return bcrypt.compareSync(password, this.Password);
+};
 //DO NOT USE ARROW FUNCTIONS WHEN DEFINING INSTANCE METHODS!! (.this)
 
-let genreSchema = mongoose.Schema(
-    {
-        Type: { type: String, required: true},
-        Description: String
-    }
-);
+let genreSchema = mongoose.Schema({
+  Type: { type: String, required: true },
+  Description: String,
+});
 
-let directorSchema = mongoose.Schema(
-    {
-        Name: {type: String, required: true},
-        Bio: {type: String, required: true},
-        BirthDate: Date
-    }
-);
+let directorSchema = mongoose.Schema({
+  name: { type: String, required: true },
+  bio: { type: String, required: true },
+  birthDate: Date,
+});
 
-let Film = mongoose.model('Film', filmSchema);
-let User = mongoose.model('User', userSchema);
-let Genre = mongoose.model('Genre', genreSchema);
-let Director = mongoose.model('Director', directorSchema);
+let Film = mongoose.model("Film", filmSchema);
+let User = mongoose.model("User", userSchema);
+let Genre = mongoose.model("Genre", genreSchema);
+let Director = mongoose.model("Director", directorSchema);
 
 module.exports.Film = Film;
 module.exports.User = User;
 module.exports.Genre = Genre;
 module.exports.Director = Director;
-
