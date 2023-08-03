@@ -1,6 +1,5 @@
 const mongoose = require("mongoose"),
   bcrypt = require("bcrypt");
-document.populate([{ path: keyString, strictPopulate: false }]);
 
 let filmSchema = mongoose.Schema({
   title: { type: String, required: true },
