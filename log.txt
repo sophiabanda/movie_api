@@ -1012,3 +1012,5 @@
 127.0.0.1 - - [03/Aug/2023:16:00:06 +0000] "GET /films HTTP/1.1" 500 145 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 127.0.0.1 - - [03/Aug/2023:16:00:26 +0000] "GET /films HTTP/1.1" 500 144 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
 127.0.0.1 - - [03/Aug/2023:16:09:26 +0000] "GET /films HTTP/1.1" 201 13168 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+127.0.0.1 - - [04/Aug/2023:18:41:08 +0000] "POST /users HTTP/1.1" 400 19 "-" "PostmanRuntime/7.32.3"
+127.0.0.1 - - [04/Aug/2023:18:41:25 +0000] "POST /login HTTP/1.1" 404 145 "-" "PostmanRuntime/7.32.3"

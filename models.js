@@ -2,22 +2,22 @@ const mongoose = require("mongoose"),
   bcrypt = require("bcrypt");
 
 let filmSchema = mongoose.Schema({
-  title: { type: String, required: true },
-  summary: { type: String, required: true },
+  Title: { type: String, required: true },
+  Summary: { type: String, required: true },
   Genres: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Genre", required: true },
   ],
   Director: { type: mongoose.Types.ObjectId, ref: "Director", required: true },
   filmPosterImg: String,
-  featured: Boolean,
+  Featured: Boolean,
 });
 
 let userSchema = mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  birthday: Date,
-  favorites: {
+  Name: { type: String, required: true },
+  Email: { type: String, required: true },
+  Password: { type: String, required: true },
+  Birthday: Date,
+  Favorites: {
     film: { type: mongoose.Types.ObjectId, ref: "Film" }, //This property will add a film by id from the films array.
     title: { type: String, ref: "Film" }, //Addint this additional property creates the ability to add a film by title.
   },
@@ -38,9 +38,9 @@ let genreSchema = mongoose.Schema({
 });
 
 let directorSchema = mongoose.Schema({
-  name: { type: String, required: true },
-  bio: { type: String, required: true },
-  birthDate: Date,
+  Name: { type: String, required: true },
+  Bio: { type: String, required: true },
+  BirthDate: Date,
 });
 
 let Film = mongoose.model("Film", filmSchema);
