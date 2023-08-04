@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 //The default setting of the above allows requests from all origins
 
-let auth = require("./auth")(app);
+// let auth = require("./auth")(app);
 
 const mongoose = require("mongoose");
 const { format } = require("path");
