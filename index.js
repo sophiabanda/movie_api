@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 //The default setting of the above allows requests from all origins
 
-// let auth = require("./auth")(app);
+let auth = require("./auth")(app);
 
 const mongoose = require("mongoose");
 const { format } = require("path");
@@ -112,6 +112,7 @@ app.get(
   (req, res) => {
     Films.findOne({ Title: req.params.Title })
       .populate("Director")
+      .populate("Genres")
       // .populate('Genres')
       .then((film) => {
         res.status(201).json(film);
