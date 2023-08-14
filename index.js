@@ -441,7 +441,7 @@ app.delete(
   "/users/id/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Users.findOneAndRemove({ id: req.params.id })
+    Users.findOneAndRemove({ _id: req.params.id })
       .then((user) => {
         if (!user) {
           res.status(400).send(req.params.Username + " was not found");
