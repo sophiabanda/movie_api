@@ -354,14 +354,14 @@ app.post(
   }
 );
 
-//Add a Favorite Film to User's Favorites by name
+//Add film to user favorites by film iD
 app.post(
-  "/users/:id/films/:filmTitle",
+  "/users/:Username/films/:filmId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndUpdate(
-      { _id: req.params.id },
-      { $addToSet: { Favorites: req.params.filmTitle } },
+      { Name: req.params.Username },
+      { $addToSet: { Favorites: req.params.filmId } },
       { new: true }
     )
       .then((updatedUser) => {
@@ -377,11 +377,11 @@ app.post(
 
 //Add film to user favorites by film iD
 app.post(
-  "/users/:Username/films/:filmId",
+  "/users/:id/films/:filmId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndUpdate(
-      { Name: req.params.Username },
+      { _id: req.params.id },
       { $addToSet: { Favorites: req.params.filmId } },
       { new: true }
     )
@@ -423,6 +423,27 @@ app.delete(
   (req, res) => {
     Users.findOneAndUpdate(
       { Name: req.params.Username },
+      { $pull: { Favorites: req.params.filmId } },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        console.log(`Added if new film.`);
+        res.json(updatedUser);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(`Error ${err}`);
+      });
+  }
+);
+
+//Delete Favorite film from user favorites by film iD
+app.delete(
+  "/users/:id/films/:filmId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { _id: req.params.id },
       { $pull: { Favorites: req.params.filmId } },
       { new: true }
     )
