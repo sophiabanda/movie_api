@@ -354,6 +354,27 @@ app.post(
   }
 );
 
+//Add a Favorite Film to User's Favorites by name
+app.post(
+  "/users/:id/films/:filmTitle",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $addToSet: { Favorites: req.params.filmTitle } },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        console.log(`Added only if film does not already exist.`);
+        res.status(200).json(updatedUser);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(`Error ${err}`);
+      });
+  }
+);
+
 //Add film to user favorites by film iD
 app.post(
   "/users/:Username/films/:filmId",
