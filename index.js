@@ -385,6 +385,7 @@ app.post(
       { $addToSet: { Favorites: req.params.filmId } },
       { new: true }
     )
+      .populate("Films")
       .then((updatedUser) => {
         console.log(`Added only if film does not already exist.`);
         res.status(200).json(updatedUser);
