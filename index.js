@@ -398,45 +398,45 @@ app.post(
 );
 
 //Delete a Favorite Film from User's Favorites by name
-app.delete(
-  "/users/:Username/films/:filmTitle",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.findOneAndUpdate(
-      { Name: req.params.Username },
-      { $pull: { Favorites: req.params.filmTitle } },
-      { new: true }
-    )
-      .then((updatedUser) => {
-        res.status(200).json(updatedUser);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).send(`'Error ${err}`);
-      });
-  }
-);
+// app.delete(
+//   "/users/:Username/films/:filmTitle",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     Users.findOneAndUpdate(
+//       { Name: req.params.Username },
+//       { $pull: { Favorites: req.params.filmTitle } },
+//       { new: true }
+//     )
+//       .then((updatedUser) => {
+//         res.status(200).json(updatedUser);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).send(`'Error ${err}`);
+//       });
+//   }
+// );
 
 //Delete Favorite film from user favorites by film iD
-app.delete(
-  "/users/:Username/films/:filmId",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.findOneAndUpdate(
-      { Name: req.params.Username },
-      { $pull: { Favorites: req.params.filmId } },
-      { new: true }
-    )
-      .then((updatedUser) => {
-        console.log(`Added if new film.`);
-        res.json(updatedUser);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).send(`Error ${err}`);
-      });
-  }
-);
+// app.delete(
+//   "/users/:Username/films/:filmId",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     Users.findOneAndUpdate(
+//       { Name: req.params.Username },
+//       { $pull: { Favorites: req.params.filmId } },
+//       { new: true }
+//     )
+//       .then((updatedUser) => {
+//         console.log(`Added if new film.`);
+//         res.json(updatedUser);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).send(`Error ${err}`);
+//       });
+//   }
+// );
 
 //Delete Favorite film from user favorites by film iD
 app.delete(
@@ -460,24 +460,24 @@ app.delete(
 );
 
 //Delete a User by Username "De-Register"
-app.delete(
-  "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Users.findOneAndRemove({ Name: req.params.Username })
-      .then((user) => {
-        if (!user) {
-          res.status(400).send(`${req.params.Username} was not found`);
-        } else {
-          res.status(200).send(`${req.params.Username} was deleted.`);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+// app.delete(
+//   "/users/:Username",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     Users.findOneAndRemove({ Name: req.params.Username })
+//       .then((user) => {
+//         if (!user) {
+//           res.status(400).send(`${req.params.Username} was not found`);
+//         } else {
+//           res.status(200).send(`${req.params.Username} was deleted.`);
+//         }
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//         res.status(500).send("Error: " + err);
+//       });
+//   }
+// );
 
 //Delete User by User iD
 app.delete(
