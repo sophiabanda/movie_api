@@ -375,6 +375,27 @@ app.post(
   }
 );
 
+//Add film to user favorites by film iD
+app.post(
+  "/users/:id/films/:filmId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $addToSet: { Favorites: req.params.filmId } },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        console.log(`Added only if film does not already exist.`);
+        res.status(200).json(updatedUser);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(`Error ${err}`);
+      });
+  }
+);
+
 //Delete a Favorite Film from User's Favorites by name
 app.delete(
   "/users/:Username/films/:filmTitle",
@@ -395,6 +416,26 @@ app.delete(
   }
 );
 
+//Delete a Favorite Film from User's Favorites by name
+app.delete(
+  "/users/:id/films/:filmTitle",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { Favorites: req.params.filmTitle } },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        res.status(200).json(updatedUser);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(`'Error ${err}`);
+      });
+  }
+);
+
 //Delete Favorite film from user favorites by film iD
 app.delete(
   "/users/:Username/films/:filmId",
@@ -402,6 +443,27 @@ app.delete(
   (req, res) => {
     Users.findOneAndUpdate(
       { Name: req.params.Username },
+      { $pull: { Favorites: req.params.filmId } },
+      { new: true }
+    )
+      .then((updatedUser) => {
+        console.log(`Added if new film.`);
+        res.json(updatedUser);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(`Error ${err}`);
+      });
+  }
+);
+
+//Delete Favorite film from user favorites by film iD
+app.delete(
+  "/users/:id/films/:filmId",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Users.findOneAndUpdate(
+      { _id: req.params.id },
       { $pull: { Favorites: req.params.filmId } },
       { new: true }
     )
