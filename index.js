@@ -261,7 +261,7 @@ app.put(
       .optional({ nullable: true })
       .normalizeEmail()
       .isEmail(),
-    check("Birthday").optional({ nullable: true }).isDate(format),
+    check("Birthday").optional({ nullable: true }).isDate(),
   ],
   (req, res) => {
     let errors = validationResult(req);
