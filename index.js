@@ -252,7 +252,6 @@ app.put(
     check("Password", "Password is required and must be at least 8 characters") //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
       .bail()
       .notEmpty(),
-    // .optional({ nullable: true }), //If remove and replace with optinal will work? Look for "ignore if empty"
     check("Name", "Name must be at least 5 alphanumeric characters")
       .isLength({ min: 5 })
       .isAlphanumeric("en-US", { ignore: " " }) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
@@ -262,7 +261,7 @@ app.put(
       .normalizeEmail()
       .isEmail()
       .optional({ nullable: true }),
-    check("Birthday").optional({ nullable: true }).isDate(),
+    check("Birthday").optional().isDate(),
   ],
   (req, res) => {
     let errors = validationResult(req);
