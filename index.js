@@ -249,18 +249,19 @@ app.put(
   "/user/id/:id",
   passport.authenticate("jwt", { session: false }), //Is it safe to have access to change all those fields with just url and token access?
   [
+    check("Password", "Password is required and must be at least 8 characters") //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
+      .bail()
+      .notEmpty(),
+    // .optional({ nullable: true }), //If remove and replace with optinal will work? Look for "ignore if empty"
     check("Name", "Name must be at least 5 alphanumeric characters")
-      .optional({ nullable: true }) //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
       .isLength({ min: 5 })
       .isAlphanumeric("en-US", { ignore: " " }) //added 'ignore' parameter makes it ok to have a space for First Last instead of FirstLast
-      .bail(),
-    check("Password", "Password is required and must be at least 8 characters") //I don't believe you should be able to update a password here. This should be a different function for change or rest pass.
-      .optional({ nullable: true }) //If remove and replace with optinal will work? Look for "ignore if empty"
-      .bail(),
+      .bail()
+      .optional({ nullable: true }), //optional with 'nullable: true' parameter ensures that the sequence won't fail if the check is missing
     check("Email", "Please provide a valid email address")
-      .optional({ nullable: true })
       .normalizeEmail()
-      .isEmail(),
+      .isEmail()
+      .optional({ nullable: true }),
     check("Birthday").optional({ nullable: true }).isDate(),
   ],
   (req, res) => {
@@ -333,7 +334,7 @@ app.get(
   }
 );
 
-//Add a Favorite Film to User's Favorites by name
+// //Add a Favorite Film to User's Favorites by name
 // app.post(
 //   "/users/:Username/films/:filmTitle",
 //   passport.authenticate("jwt", { session: false }),
@@ -354,7 +355,7 @@ app.get(
 //   }
 // );
 
-//Add film to user favorites by film iD
+// Add film to user favorites by film iD
 // app.post(
 //   "/users/:Username/films/:filmId",
 //   passport.authenticate("jwt", { session: false }),

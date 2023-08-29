@@ -1023,3 +1023,5 @@
 127.0.0.1 - - [28/Aug/2023:17:17:53 +0000] "POST /users/64ecd524bdfe14fbd7b8d965/films/63d1d9eccf84b078575ab101 HTTP/1.1" 200 4 "-" "PostmanRuntime/7.32.3"
 127.0.0.1 - - [28/Aug/2023:17:26:48 +0000] "POST /users/64ecd524bdfe14fbd7b8d965/films/63d1d9eccf84b078575ab101 HTTP/1.1" 200 197 "-" "PostmanRuntime/7.32.3"
 127.0.0.1 - - [28/Aug/2023:17:28:19 +0000] "PUT /user/id/64ecd524bdfe14fbd7b8d965 HTTP/1.1" 422 84 "-" "PostmanRuntime/7.32.3"
+127.0.0.1 - - [28/Aug/2023:19:09:28 +0000] "POST /users HTTP/1.1" 201 156 "-" "PostmanRuntime/7.32.3"
+127.0.0.1 - - [28/Aug/2023:19:09:56 +0000] "PUT /user/id/64ecd524bdfe14fbd7b8d965 HTTP/1.1" 422 94 "-" "PostmanRuntime/7.32.3"
