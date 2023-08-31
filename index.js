@@ -22,7 +22,7 @@ const { check, validationResult } = require("express-validator");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ credentials: true }));
 //The default setting of the above allows requests from all origins
 
 let auth = require("./auth")(app);

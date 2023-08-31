@@ -1030,3 +1030,4 @@
 127.0.0.1 - - [29/Aug/2023:19:32:36 +0000] "PUT /user/id/64ecf0e8449fe2e9db875527 HTTP/1.1" 401 - "-" "PostmanRuntime/7.32.3"
 127.0.0.1 - - [29/Aug/2023:19:33:03 +0000] "PUT /user/id/64ee47c5b3a3ae9988191e22 HTTP/1.1" 422 84 "-" "PostmanRuntime/7.32.3"
 127.0.0.1 - - [29/Aug/2023:19:34:36 +0000] "PUT /user/id/64ee47c5b3a3ae9988191e22 HTTP/1.1" 200 194 "-" "PostmanRuntime/7.32.3"
+127.0.0.1 - - [31/Aug/2023:13:14:26 +0000] "GET /users HTTP/1.1" 201 900 "-" "PostmanRuntime/7.32.3"
