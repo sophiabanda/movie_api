@@ -62,6 +62,8 @@ let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
   "https://select-films.netlify.app/",
+  "https://select-films.netlify.app/login",
+  "https://select-films.netlify.app/profile",
 ];
 
 app.use(
