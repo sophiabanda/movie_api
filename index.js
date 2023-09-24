@@ -61,8 +61,8 @@ app.use(requestTimeStamp);
 // ---------------------------------------------------------------------------------------CORS ALLOWANCES
 let allowedOrigins = [
   "http://localhost:1234",
-  "https://select-films.netlify.app/",
-  "http://select-films.netlify.app/",
+  "https://select-films.netlify.app",
+  "http://select-films.netlify.app",
 ];
 
 app.use(
