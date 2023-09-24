@@ -58,7 +58,11 @@ app.use(myLogger);
 app.use(requestTimeStamp);
 
 // ---------------------------------------------------------------------------------------CORS ALLOWANCES
-let allowedOrigins = "*";
+let allowedOrigins = [
+  "http://localhost:8080",
+  "http://localhost:1234",
+  "https://select-films.netlify.app/",
+];
 
 app.use(
   cors({
