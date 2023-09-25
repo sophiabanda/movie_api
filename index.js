@@ -58,30 +58,36 @@ app.use(myLogger);
 app.use(requestTimeStamp);
 // app.use(cors());
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
-
-// ---------------------------------------------------------------------------------------CORS ALLOWANCES
-// let allowedOrigins = [
-//   "http://localhost:1234",
-//   "https://select-films.netlify.app",
-// ];
-
 // app.use(
 //   cors({
-//     origin: (origin, callback) => {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
-//         return callback(new Error(message), false);
-//       }
-//       return callback(null, true);
-//     },
+//     origin: "*",
 //   })
 // );
+
+// ---------------------------------------------------------------------------------------CORS ALLOWANCES
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "*",
+};
+
+const allowedOrigins = [
+  "http://localhost:1234",
+  "https://select-films.netlify.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 //---------------------------------------------------SITE---------------------------------------------------SITE---------------------------------------------------SITE
 //Homepage Welcome
