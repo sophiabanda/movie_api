@@ -56,7 +56,7 @@ const requestTimeStamp = (req, res, next) => {
 
 app.use(myLogger);
 app.use(requestTimeStamp);
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 // app.use(
 //   cors({
