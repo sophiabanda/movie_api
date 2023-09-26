@@ -20,10 +20,36 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
 });
 const { check, validationResult } = require("express-validator");
 
+// ---------------------------------------------------------------------------------------CORS ALLOWANCES
+// const CORS_HEADERS = {
+//   "Access-Control-Allow-Origin": "*",
+//   "Access-Control-Allow-Headers": "Content-Type",
+//   "Access-Control-Allow-Methods": "*",
+// };
+
+const allowedOrigins = [
+  "http://localhost:1234",
+  "http://localhost:8080",
+  "https://select-films.netlify.app",
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      console.log({ origin });
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors({ credentials: true }));
-//The default setting of the above allows requests from all origins
 
 let auth = require("./auth")(app);
 
@@ -56,38 +82,6 @@ const requestTimeStamp = (req, res, next) => {
 
 app.use(myLogger);
 app.use(requestTimeStamp);
-app.use(cors({ credentials: true }));
-
-// app.use(
-//   cors({
-//     origin: "*",
-//   })
-// );
-
-// ---------------------------------------------------------------------------------------CORS ALLOWANCES
-// const CORS_HEADERS = {
-//   "Access-Control-Allow-Origin": "*",
-//   "Access-Control-Allow-Headers": "Content-Type",
-//   "Access-Control-Allow-Methods": "*",
-// };
-
-// const allowedOrigins = [
-//   "http://localhost:1234",
-//   "https://select-films.netlify.app",
-// ];
-
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         let message = `The CORS policy for this application does not allow access from the origin ${origin}`;
-//         return callback(new Error(message), false);
-//       }
-//       return callback(null, true);
-//     },
-//   })
-// );
 
 //---------------------------------------------------SITE---------------------------------------------------SITE---------------------------------------------------SITE
 //Homepage Welcome
