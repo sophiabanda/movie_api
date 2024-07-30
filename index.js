@@ -124,7 +124,6 @@ app.get(
     Films.findOne({ Title: req.params.Title })
       .populate('Director')
       .populate('Genres')
-      // .populate('Genres')
       .then((film) => {
         res.status(201).json(film);
       })
